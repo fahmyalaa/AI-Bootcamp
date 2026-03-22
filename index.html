@@ -791,7 +791,7 @@ const PHASES = [
 // ─────────────────────────────────────────
 let curPhase = 1;
 let done = [];
-try { done = JSON.parse(localStorage.getItem('ai30v2_done') || '[]'); } catch(e) {}
+try { var _s = localStorage.getItem('ai30v2_done'); done = _s ? JSON.parse(_s) : []; } catch(e) { done = []; }
 
 function save() { try { localStorage.setItem('ai30v2_done', JSON.stringify(done)); } catch(e) {} }
 
@@ -1000,24 +1000,38 @@ function showToast(n) {
 }
 
 // ─────────────────────────────────────────
-// PHASE TABS
+// PHASE TABS — event delegation so it works
+// on GitHub Pages and all static hosts
 // ─────────────────────────────────────────
-document.querySelectorAll('.ptab').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    curPhase = parseInt(this.getAttribute('data-p'));
+function bindTabs() {
+  var nav = document.getElementById('pnav');
+  if (!nav) return;
+  nav.addEventListener('click', function(e) {
+    var btn = e.target.closest('.ptab');
+    if (!btn) return;
+    document.querySelectorAll('.ptab').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    curPhase = parseInt(btn.getAttribute('data-p'));
     renderPhase(curPhase);
     updateUI();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-});
+}
 
 // ─────────────────────────────────────────
-// INIT
+// INIT — wait for full DOM
 // ─────────────────────────────────────────
-renderPhase(1);
-updateUI();
+function init() {
+  renderPhase(1);
+  updateUI();
+  bindTabs();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 </script>
 </body>
 </html>
