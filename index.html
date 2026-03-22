@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30-Day AI Bootcamp — Your Career Starts Here</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08090c;--bg2:#0f1014;--bg3:#16171d;--bg4:#1e1f27;--bg5:#26273200;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);--border3:rgba(255,255,255,0.18);
+  --text:#eeeef0;--text2:#9898a6;--text3:#55555f;
+  --p:#a78bfa;--p2:#7c3aed;--pd:rgba(167,139,250,0.12);--pb:rgba(167,139,250,0.28);
+  --t:#34d399;--td:rgba(52,211,153,0.1);--tb:rgba(52,211,153,0.28);
+  --a:#fb923c;--ad:rgba(251,146,60,0.1);--ab:rgba(251,146,60,0.28);
+  --b:#38bdf8;--bd:rgba(56,189,248,0.1);--bb:rgba(56,189,248,0.28);
+  --r:#f87171;--rd:rgba(248,113,113,0.1);--rb:rgba(248,113,113,0.28);
+  --y:#facc15;--yd:rgba(250,204,21,0.1);--yb:rgba(250,204,21,0.28);
+  --g:#4ade80;--gd:rgba(74,222,128,0.08);--gb:rgba(74,222,128,0.22);
+  --font:'Plus Jakarta Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ── ANIMATED BG GRID ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;top:-40%;left:-20%;width:80%;height:80%;
+  background:radial-gradient(ellipse,rgba(124,58,237,0.08) 0%,transparent 60%);
+  pointer-events:none;z-index:0;animation:drift 20s ease-in-out infinite alternate;
+}
+@keyframes drift{0%{transform:translate(0,0)}100%{transform:translate(10%,8%)}}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 1.25rem;position:relative;z-index:1}
+
+/* ── HERO ── */
+.hero{padding:4rem 0 2.5rem;text-align:center;position:relative}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--p);background:var(--pd);border:1px solid var(--pb);
+  padding:6px 16px;border-radius:20px;margin-bottom:1.75rem;
+  animation:fadeUp 0.6s ease both;
+}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--p);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+
+h1{
+  font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;line-height:1.08;
+  letter-spacing:-0.04em;margin-bottom:1rem;
+  animation:fadeUp 0.6s 0.1s ease both;
+}
+.grad{background:linear-gradient(135deg,#a78bfa 0%,#38bdf8 50%,#34d399 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:15px;color:var(--text2);max-width:520px;margin:0 auto 2rem;line-height:1.75;animation:fadeUp 0.6s 0.2s ease both}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* XP BAR */
+.xp-section{animation:fadeUp 0.6s 0.3s ease both;margin-bottom:0.5rem}
+.xp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.xp-label{font-family:var(--mono);font-size:11px;color:var(--text3)}
+.xp-val{font-family:var(--mono);font-size:12px;color:var(--p);font-weight:600}
+.xp-track{height:6px;background:var(--bg4);border-radius:6px;overflow:hidden;border:1px solid var(--border)}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--p),var(--b),var(--t));border-radius:6px;transition:width 0.6s cubic-bezier(.4,0,.2,1);width:0%}
+.xp-stars{display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.xp-star{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:20px;border:1px solid var(--border2);color:var(--text3);transition:all 0.3s}
+.xp-star.earned{color:var(--y);border-color:var(--yb);background:var(--yd)}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:2rem 0 2.5rem;animation:fadeUp 0.6s 0.35s ease both}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center;transition:all 0.2s;cursor:default}
+.stat:hover{border-color:var(--border2);transform:translateY(-2px)}
+.stat-icon{font-size:20px;margin-bottom:6px}
+.stat-val{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--text);display:block}
+.stat-lbl{font-size:11px;color:var(--text3);margin-top:3px;letter-spacing:0.03em}
+
+/* PHASE TABS */
+.phase-nav{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:16px;padding:8px;margin-bottom:2rem;
+  animation:fadeUp 0.6s 0.4s ease both;
+}
+.ptab{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:12px 8px;border-radius:10px;border:1px solid transparent;
+  background:transparent;color:var(--text3);cursor:pointer;
+  font-family:var(--font);transition:all 0.2s;position:relative;
+}
+.ptab:hover{background:var(--bg3);color:var(--text2)}
+.ptab.active{background:var(--bg4);color:var(--text);border-color:var(--border2)}
+.ptab-icon{font-size:20px}
+.ptab-name{font-size:12px;font-weight:600}
+.ptab-range{font-family:var(--mono);font-size:10px;color:var(--text3)}
+.ptab.active .ptab-range{color:var(--p)}
+.ptab-done-badge{
+  position:absolute;top:6px;right:6px;
+  font-family:var(--mono);font-size:9px;
+  background:var(--gd);color:var(--g);border:1px solid var(--gb);
+  padding:1px 5px;border-radius:8px;display:none;
+}
+.ptab.phase-complete .ptab-done-badge{display:block}
+
+/* PHASE HEADER */
+.phase-hdr{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 22px;background:var(--bg2);
+  border:1px solid var(--border);border-radius:16px;
+  margin-bottom:1.5rem;animation:fadeUp 0.3s ease;
+}
+.phase-hdr-icon{
+  width:56px;height:56px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;flex-shrink:0;
+}
+.phase-hdr-body{flex:1}
+.phase-hdr-body h2{font-size:17px;font-weight:700;margin-bottom:6px}
+.phase-hdr-body p{font-size:13px;color:var(--text2);line-height:1.65}
+.phase-pill{
+  font-family:var(--mono);font-size:10px;padding:4px 12px;
+  border-radius:20px;white-space:nowrap;align-self:flex-start;margin-top:3px;
+}
+.ph1 .phase-hdr-icon{background:var(--pd);border:1px solid var(--pb)}
+.ph1 .phase-pill{background:var(--pd);color:var(--p);border:1px solid var(--pb)}
+.ph2 .phase-hdr-icon{background:var(--td);border:1px solid var(--tb)}
+.ph2 .phase-pill{background:var(--td);color:var(--t);border:1px solid var(--tb)}
+.ph3 .phase-hdr-icon{background:var(--ad);border:1px solid var(--ab)}
+.ph3 .phase-pill{background:var(--ad);color:var(--a);border:1px solid var(--ab)}
+.ph4 .phase-hdr-icon{background:var(--bd);border:1px solid var(--bb)}
+.ph4 .phase-pill{background:var(--bd);color:var(--b);border:1px solid var(--bb)}
+
+/* DAY CARDS */
+.days{display:flex;flex-direction:column;gap:10px}
+.day-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:border-color 0.2s;
+  animation:fadeUp 0.35s ease both;
+}
+.day-card:hover{border-color:var(--border2)}
+.day-card.locked{opacity:0.45;pointer-events:none}
+.day-card.done{border-color:var(--tb)}
+.day-card.done .day-row{background:rgba(52,211,153,0.04)}
+.day-card.active-day{border-color:var(--pb)}
+
+.day-row{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;user-select:none}
+
+.day-badge{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-family:var(--mono);font-size:11px;font-weight:600;
+  background:var(--bg3);border:1px solid var(--border);color:var(--text3);
+  transition:all 0.3s;
+}
+.day-card.done .day-badge{background:var(--td);border-color:var(--tb);color:var(--t)}
+.day-card.active-day .day-badge{background:var(--pd);border-color:var(--pb);color:var(--p)}
+
+.day-info{flex:1;min-width:0}
+.day-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.day-sub{font-size:12px;color:var(--text3)}
+
+.day-meta{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.tag{font-size:10px;font-family:var(--mono);padding:3px 9px;border-radius:10px;white-space:nowrap}
+.tp{background:var(--pd);color:var(--p);border:1px solid var(--pb)}
+.tt{background:var(--td);color:var(--t);border:1px solid var(--tb)}
+.tc{background:var(--ad);color:var(--a);border:1px solid var(--ab)}
+.ta{background:var(--bd);color:var(--b);border:1px solid var(--bb)}
+.tx{background:var(--rd);color:var(--r);border:1px solid var(--rb)}
+
+.done-check{
+  width:24px;height:24px;border-radius:50%;border:1px solid var(--border2);
+  background:var(--bg3);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:transparent;flex-shrink:0;transition:all 0.2s;
+}
+.done-check:hover{border-color:var(--tb);color:rgba(52,211,153,0.4)}
+.day-card.done .done-check{background:var(--t);border-color:var(--t);color:#000}
+.chevron{font-size:11px;color:var(--text3);transition:transform 0.25s;flex-shrink:0}
+.chevron.open{transform:rotate(180deg)}
+
+/* DAY BODY */
+.day-body{display:none;border-top:1px solid var(--border)}
+.day-body.open{display:block;animation:fadeUp 0.2s ease}
+.day-body-inner{padding:22px 20px 24px}
+
+/* SECTION BLOCKS */
+.sec-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--text3);
+  display:flex;align-items:center;gap:8px;margin:22px 0 12px;
+}
+.sec-label::before{content:'';flex:none;width:3px;height:3px;border-radius:50%;background:currentColor}
+.sec-label:first-child{margin-top:0}
+
+/* CONTEXT EXPLAINER */
+.explainer{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:12px;padding:16px;margin-bottom:4px;
+  font-size:13px;color:var(--text2);line-height:1.75;
+}
+.explainer strong{color:var(--text);font-weight:600}
+.explainer .hl{color:var(--p);font-weight:600}
+
+/* TASK LIST */
+.task-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.task-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;background:var(--bg3);border-radius:10px;
+  border:1px solid var(--border);transition:border-color 0.2s;
+  font-size:13px;color:var(--text2);line-height:1.65;
+}
+.task-item:hover{border-color:var(--border2)}
+.task-num{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  min-width:22px;height:22px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg4);color:var(--text3);flex-shrink:0;margin-top:1px;
+}
+.task-item.v-p .task-num{background:var(--pd);color:var(--p)}
+.task-item.v-t .task-num{background:var(--td);color:var(--t)}
+.task-item.v-a .task-num{background:var(--ad);color:var(--a)}
+.task-item.v-b .task-num{background:var(--bd);color:var(--b)}
+.task-item.v-r .task-num{background:var(--rd);color:var(--r)}
+.task-item strong{color:var(--text);font-weight:600}
+.task-item a{color:var(--b);text-decoration:none;border-bottom:1px solid rgba(56,189,248,0.3);transition:border-color 0.15s}
+.task-item a:hover{border-color:var(--b)}
+
+/* TOOLS */
+.tools-wrap{display:flex;gap:7px;flex-wrap:wrap}
+.tool-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-family:var(--mono);
+  padding:5px 12px;border-radius:20px;
+  background:var(--bg3);border:1px solid var(--border2);color:var(--text2);
+  text-decoration:none;transition:all 0.15s;
+}
+.tool-chip:hover{background:var(--bg4);border-color:var(--border3);color:var(--text)}
+.tool-chip .tool-dot{width:6px;height:6px;border-radius:50%;background:var(--p);flex-shrink:0}
+.tool-chip.free .tool-dot{background:var(--t)}
+
+/* RESOURCES */
+.resource-list{display:flex;flex-direction:column;gap:7px}
+.resource-card{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 14px;background:var(--bg3);border-radius:10px;
+  border:1px solid var(--border);text-decoration:none;transition:all 0.2s;
+  color:var(--text);
+}
+.resource-card:hover{border-color:var(--bb);background:var(--bd);transform:translateX(3px)}
+.resource-card-icon{
+  width:32px;height:32px;border-radius:8px;background:var(--bd);
+  display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;
+}
+.resource-card-body{flex:1;min-width:0}
+.resource-card-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.resource-card-desc{font-size:11px;color:var(--text3)}
+.resource-card-arrow{font-size:14px;color:var(--text3);flex-shrink:0}
+
+/* DELIVERABLE */
+.deliverable{
+  padding:16px;background:var(--gd);border:1px solid var(--gb);
+  border-radius:12px;font-size:13px;color:var(--text);line-height:1.7;
+}
+.deliverable-header{
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--g);
+}
+.deliverable-header::before{content:'📦';font-size:14px}
+.deliverable p{color:var(--text2)}
+.deliverable strong{color:var(--g)}
+
+/* TIP */
+.tip{
+  padding:14px 16px;background:var(--yd);border:1px solid var(--yb);
+  border-radius:12px;font-size:13px;color:#c9a227;line-height:1.7;margin-top:10px;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.tip-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+
+/* MILESTONE */
+.milestone{
+  margin-top:14px;padding:16px;
+  background:linear-gradient(135deg,rgba(167,139,250,0.1),rgba(56,189,248,0.08));
+  border:1px solid var(--pb);border-radius:12px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.milestone-body{font-size:13px;color:var(--text);line-height:1.65;font-weight:500}
+.milestone-icon{font-size:24px;flex-shrink:0}
+
+/* PROMPT EXAMPLE BOX */
+.prompt-box{
+  background:#0d0e14;border:1px solid var(--border2);border-radius:10px;
+  padding:14px 16px;margin:8px 0;font-family:var(--mono);font-size:12px;
+  color:#a0c4ff;line-height:1.7;position:relative;
+}
+.prompt-box::before{
+  content:'PROMPT EXAMPLE';position:absolute;top:-1px;left:12px;
+  background:#0d0e14;padding:0 6px;
+  font-size:9px;letter-spacing:0.1em;color:var(--text3);
+}
+.prompt-box .ph{color:#9fa8da}
+.prompt-box .kw{color:var(--p)}
+
+/* EXAMPLE BOX */
+.example-box{
+  background:var(--bg4);border-left:3px solid var(--p);
+  border-radius:0 10px 10px 0;padding:12px 14px;margin:6px 0;
+  font-size:12px;color:var(--text2);line-height:1.65;font-style:italic;
+}
+
+/* COMPLETION TOAST */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  background:var(--bg3);border:1px solid var(--tb);border-radius:14px;
+  padding:14px 18px;display:flex;align-items:center;gap:12px;
+  font-size:14px;color:var(--t);font-weight:600;
+  box-shadow:0 8px 40px rgba(0,0,0,0.5);
+  transform:translateY(80px);opacity:0;transition:all 0.4s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-icon{font-size:22px}
+
+/* UNLOCK ANIMATION */
+@keyframes unlock{
+  0%{transform:scale(0.8);opacity:0}
+  60%{transform:scale(1.08)}
+  100%{transform:scale(1);opacity:1}
+}
+.day-card.just-unlocked{animation:unlock 0.4s ease both}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 0 5rem;border-top:1px solid var(--border);margin-top:4rem}
+footer p{font-size:12px;color:var(--text3);font-family:var(--mono);line-height:2}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:4px}
+
+@media(max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .phase-nav{grid-template-columns:repeat(2,1fr)}
+  .day-meta .tag{display:none}
+  .phase-hdr{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">Your AI Career Starts Now</div>
+  <h1>30 Days to Become<br><span class="grad">AI-Employable</span></h1>
+  <p class="hero-desc">You just graduated. The world is moving fast. This is your shortcut — 30 focused days, real skills, real projects, and a portfolio employers will actually want to see. Follow every step. Don't skip.</p>
+
+  <div class="xp-section">
+    <div class="xp-top">
+      <span class="xp-label">⚡ PROGRESS XP</span>
+      <span class="xp-val" id="xp-val">0 / 30 days</span>
+    </div>
+    <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+    <div class="xp-stars" id="xp-stars">
+      <span class="xp-star" data-at="7">🏅 Week 1</span>
+      <span class="xp-star" data-at="18">⚡ Specialist</span>
+      <span class="xp-star" data-at="26">🔨 Builder</span>
+      <span class="xp-star" data-at="30">🚀 Hired</span>
+    </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-icon">📅</div><span class="stat-val">30</span><div class="stat-lbl">Total Days</div></div>
+  <div class="stat"><div class="stat-icon">✅</div><span class="stat-val" id="s-done">0</span><div class="stat-lbl">Completed</div></div>
+  <div class="stat"><div class="stat-icon">🔨</div><span class="stat-val">5+</span><div class="stat-lbl">Real Projects</div></div>
+  <div class="stat"><div class="stat-icon">💼</div><span class="stat-val" id="s-left">30</span><div class="stat-lbl">Days Left</div></div>
+</div>
+
+<!-- PHASE TABS -->
+<div class="phase-nav" id="pnav">
+  <button class="ptab active" data-p="1"><span class="ptab-icon">🧠</span><span class="ptab-name">Foundation</span><span class="ptab-range">Days 1–7</span><span class="ptab-done-badge">✓</span></button>
+  <button class="ptab" data-p="2"><span class="ptab-icon">⚡</span><span class="ptab-name">Specialize</span><span class="ptab-range">Days 8–18</span><span class="ptab-done-badge">✓</span></button>
+  <button class="ptab" data-p="3"><span class="ptab-icon">🔨</span><span class="ptab-name">Build</span><span class="ptab-range">Days 19–26</span><span class="ptab-done-badge">✓</span></button>
+  <button class="ptab" data-p="4"><span class="ptab-icon">🚀</span><span class="ptab-name">Launch</span><span class="ptab-range">Days 27–30</span><span class="ptab-done-badge">✓</span></button>
+</div>
+
+<div id="phase-content"></div>
+
+<footer>
+  <p>Open this file in any browser — Chrome, Firefox, Edge, Safari.<br>Your progress saves automatically. No internet needed after the first load.<br>Built for you. Go build your future. 🚀</p>
+</footer>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon">🎉</div>
+  <div id="toast-msg">Day complete!</div>
+</div>
+
+<script>
+// ─────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────
+const PHASES = [
+{
+  id:1,icon:"🧠",ph:"ph1",name:"Phase 1 — Foundation & AI Literacy",range:"Days 1–7",
+  desc:"Before you can use AI tools professionally, you need to understand what they actually are and why they matter. This phase gives you the mental foundation and the workspace. Think of it like setting up a gym before you start training — you need the right equipment first.",
+  days:[
+  {
+    n:1,title:"Understand the AI Landscape",sub:"What is AI? What does it actually do?",
+    tags:[["Prompt Eng","tp"],["Tools","tt"]],
+    explainer:`Welcome to Day 1. Before you touch any tool, you need to understand <strong>what AI actually is</strong> — and more importantly, what it <em>isn't</em>. Most people confuse AI with robots or science fiction. The reality is much more exciting: <span class="hl">AI is software that can understand language, generate images, write code, make decisions, and create content</span> — and right now, it's changing every job on the planet. Your goal today is to build a clear mental picture of this world.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Watch this video first (10 min):</strong> Search on YouTube for <strong>"Google — AI Explained"</strong> or <strong>"What is Generative AI — IBM"</strong>. Watch the whole thing. Pause when something is confusing. Write down 3 things that surprised you in a notebook.`},
+      {v:"v-t",t:`<strong>Learn 5 key terms</strong> — open <a href="https://chat.openai.com" target="_blank">ChatGPT</a> and ask it: <em>"Explain these 5 terms to me like I'm 18 years old with no tech background: AI, Machine Learning, Large Language Model, Generative AI, Chatbot."</em> Read the answer carefully. Write a 1-sentence definition for each in your own words.`},
+      {v:"v-a",t:`<strong>Know your players:</strong> These are the 4 most important AI companies right now. Search each one and write what their main product is: <strong>OpenAI</strong> (makes ChatGPT), <strong>Anthropic</strong> (makes Claude), <strong>Google DeepMind</strong> (makes Gemini), <strong>Meta AI</strong> (makes Llama). Understanding the industry landscape makes you sound credible in interviews.`},
+      {v:"v-b",t:`<strong>Create your Google Doc "AI Dictionary"</strong> at <a href="https://docs.google.com" target="_blank">docs.google.com</a>. Add 10 AI terms with your own simple definitions. This is a living document — you'll add to it throughout the 30 days. Start with the 5 from Task 2, then add 5 more you find interesting.`}
+    ],
+    tools:[{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Claude",u:"https://claude.ai",free:true},{n:"Gemini",u:"https://gemini.google.com",free:true},{n:"Google Docs",u:"https://docs.google.com",free:true}],
+    resources:[
+      {icon:"▶",title:"ChatGPT — Free AI Chat",desc:"OpenAI's chatbot. Free tier is all you need.",url:"https://chat.openai.com"},
+      {icon:"▶",title:"Claude — Free AI Chat",desc:"Anthropic's chatbot. Often gives better long answers.",url:"https://claude.ai"},
+      {icon:"▶",title:"Gemini — Free AI Chat",desc:"Google's AI assistant. Great for research.",url:"https://gemini.google.com"},
+      {icon:"📖",title:"Perplexity AI — AI Search",desc:"Like Google but with AI explanations. Use it to research anything.",url:"https://perplexity.ai"}
+    ],
+    deliverable:{title:"Your AI Dictionary",body:`A Google Doc titled <strong>"My AI Dictionary — [Your Name]"</strong> with at least 10 terms defined in your own simple English. Keep this doc — you'll use it again on Day 7.`},
+    tip:"Don't try to memorize everything. You're building a mental map, not passing an exam. The tools will teach you more than any article will.",
+    milestone:null
+  },
+  {
+    n:2,title:"Set Up Your AI Workspace",sub:"Create every account you'll need. All free.",
+    tags:[["Tools","tt"]],
+    explainer:`Today is your setup day. Think of it like a chef preparing their kitchen before cooking — you don't start cooking without your tools ready. By the end of today you will have <strong>6 AI accounts</strong>, a <strong>Notion portfolio</strong>, and a professional email. Every single tool you set up today has a <span class="hl">free plan that is enough for this entire curriculum</span>. No credit card needed.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Create your 6 AI accounts</strong> (use "Sign in with Google" on all of them — faster and safer): <a href="https://chat.openai.com" target="_blank">ChatGPT</a> • <a href="https://claude.ai" target="_blank">Claude</a> • <a href="https://gemini.google.com" target="_blank">Gemini</a> • <a href="https://perplexity.ai" target="_blank">Perplexity.ai</a> • <a href="https://leonardo.ai" target="_blank">Leonardo.ai</a> • <a href="https://canva.com" target="_blank">Canva</a>. After creating each, type "Hello" and make sure it responds. This confirms the account works.`},
+      {v:"v-t",t:`<strong>Set up your Notion portfolio</strong> at <a href="https://notion.so" target="_blank">notion.so</a>. Create a free account. Then create a new page called <strong>"My AI Portfolio — 30 Days"</strong>. Add a table inside it with 4 columns: Project Name | What I built | Tools I used | Link. This is where every deliverable you create goes. At the end of 30 days, this becomes your resume.`},
+      {v:"v-a",t:`<strong>Professional email setup:</strong> If your current email looks unprofessional (like "xXgamer99Xx@gmail.com"), create a new Gmail with your real name (like "ahmed.khaled.ai@gmail.com"). This is the email you use for all job applications. Professionalism starts here.`},
+      {v:"v-b",t:`<strong>Build your Notion Toolkit page:</strong> Inside your portfolio, create a sub-page called <strong>"My AI Toolkit"</strong>. Make a table: Tool Name | What it does | My use case | Free or Paid. Fill in all 6 tools from Task 1. This becomes your personal reference document.`}
+    ],
+    tools:[{n:"Notion",u:"https://notion.so",free:true},{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Claude",u:"https://claude.ai",free:true},{n:"Leonardo AI",u:"https://leonardo.ai",free:true},{n:"Canva",u:"https://canva.com",free:true},{n:"Perplexity",u:"https://perplexity.ai",free:true}],
+    resources:[
+      {icon:"📋",title:"Notion — Free Portfolio Builder",desc:"Your portfolio lives here. Free plan is more than enough.",url:"https://notion.so"},
+      {icon:"🎨",title:"Canva — Free Design Tool",desc:"Create graphics, posts, presentations with AI built in.",url:"https://canva.com"},
+      {icon:"🖼",title:"Leonardo AI — Free Image Generator",desc:"Generate professional AI images. 150 free credits/day.",url:"https://leonardo.ai"}
+    ],
+    deliverable:{title:"Your AI Toolkit Page",body:`A live Notion page with a table of all 6 tools. Share it with yourself by copying the public link. Add it to your phone's bookmarks — you'll visit this page every day.`},
+    tip:"Use the same password for nothing. Use Google Sign-In everywhere. If you must create a password, make it 12+ characters and save it in Google Password Manager.",
+    milestone:null
+  },
+  {
+    n:3,title:"Prompt Engineering — Part 1",sub:"The #1 skill AI companies pay for. Learn it here.",
+    tags:[["Prompt Eng","tp"]],
+    explainer:`Here's something most people don't know: <strong>how you talk to AI completely changes what it gives you</strong>. A bad prompt gives you a useless answer. A great prompt gives you something worth $500. This skill is called <span class="hl">Prompt Engineering</span>, and companies literally hire people just for this. Today you learn the foundation — the 4-part formula that makes AI outputs 10x better.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Learn the RCTF Formula</strong> — every great prompt has 4 parts: <strong>R</strong>ole (who the AI should be), <strong>C</strong>ontext (background information), <strong>T</strong>ask (exactly what you want), <strong>F</strong>ormat (how you want the answer). Open Claude and test this prompt exactly:`},
+      {v:"v-t",t:`<strong>Compare bad vs good prompts.</strong> First, send this to ChatGPT: <em>"Write a post about coffee."</em> — save the result. Then send this: <em>"You are a social media expert for Egyptian food brands. Write an Instagram caption for a new specialty coffee shop opening in Zamalek, Cairo. Target audience: young professionals aged 22–30. Tone: warm and exciting. Length: under 80 words. Include one relevant emoji."</em> Compare both answers. The difference IS the skill.`},
+      {v:"v-a",t:`<strong>Build 5 prompt comparisons:</strong> Pick 5 random topics (a product, a job, a recipe, a story, a tip). For each: write a bad 5-word prompt, then write a great RCTF prompt. Run both in Claude. Save all 10 responses in a Notion page called <strong>"Prompt Training Log."</strong>`},
+      {v:"v-b",t:`<strong>Ask Claude to explain "temperature" in AI</strong> using this prompt: <em>"Explain what 'temperature' means in AI language models. Use a simple analogy. I'm 18 years old with no coding background."</em> Write the explanation in your own words in your AI Dictionary.`}
+    ],
+    promptExample:`You are a <span class="kw">social media expert</span> for Egyptian brands.\nYour task: Write an <span class="kw">Instagram caption</span> for a new coffee shop in Cairo called "Sakia."\nContext: It opens next Friday. It's cozy, Egyptian-inspired, specialty coffee.\nAudience: Young professionals, ages 22–30, Arabic and English speakers.\nFormat: <span class="kw">Under 80 words</span>. One emoji. Warm, excited tone.`,
+    tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Notion",u:"https://notion.so",free:true}],
+    resources:[
+      {icon:"📖",title:"Learn Prompting — Free Complete Guide",desc:"The internet's best free resource on prompt engineering.",url:"https://learnprompting.org"},
+      {icon:"📖",title:"Anthropic's Prompt Library",desc:"Real prompts used by professionals. Study these.",url:"https://anthropic.com/prompts"}
+    ],
+    deliverable:{title:"Prompt Training Log",body:`A Notion page with <strong>5 before/after prompt pairs</strong> — showing the bad prompt, the great prompt, and both AI responses side by side. This is your first portfolio piece showing real skill.`},
+    tip:"Every time you get a bad AI response, don't blame the AI — rewrite your prompt. That mindset shift is what separates professionals from amateurs.",
+    milestone:null
+  },
+  {
+    n:4,title:"Prompt Engineering — Part 2",sub:"Advanced techniques that professionals actually use",
+    tags:[["Prompt Eng","tp"]],
+    explainer:`Now that you know the basics, let's go deeper. These 4 advanced techniques are what separates someone who just uses AI casually from someone who can deliver <strong>consistent, professional-grade results</strong> every time. Companies literally pay $50–$150/hour for people who can do this reliably.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Chain-of-Thought prompting:</strong> Add the phrase <em>"Think step by step before answering"</em> to any complex prompt. Try it with a logic puzzle in ChatGPT — with and without the phrase. Notice how the AI's reasoning improves dramatically. This works because it forces the AI to "show its work" instead of guessing.`},
+      {v:"v-t",t:`<strong>Persona prompting:</strong> Make AI become a specific expert. Try this in Claude: <em>"You are a seasoned Harvard-trained marketing consultant with 20 years of experience helping Egyptian startups. Your communication style is direct, practical, and data-driven. You avoid buzzwords. Now review this sentence and tell me how to improve it: [paste any sentence you wrote today]."</em> Notice the completely different quality of feedback.`},
+      {v:"v-a",t:`<strong>Constraint prompting — tell AI what NOT to do:</strong> Open ChatGPT and send: <em>"Write me 3 tips for being more productive. Do NOT use bullet points. Do NOT use words like 'leverage', 'synergy', or 'optimize'. Keep each tip under 30 words. Write in a casual, friendly tone."</em> Constraints are what make AI output actually usable for clients.`},
+      {v:"v-b",t:`<strong>Prompt chaining — the most powerful technique:</strong> Use one AI output as the input for the next prompt. Example chain: Prompt 1 → "Generate 5 business ideas for Egypt." → take idea #3 → Prompt 2 → "Write a one-paragraph pitch for this idea." → Prompt 3 → "Turn that pitch into a 5-slide presentation outline." Practice this full chain yourself with any topic.`},
+      {v:"v-r",t:`<strong>Build your Prompt Library in Notion.</strong> Create a page called <strong>"My Prompt Library."</strong> Add 8 prompt templates you can reuse — 2 for each of: emails, content writing, analysis, and research. Label each with: Name | Use case | The prompt template. This is a real asset that has market value.`}
+    ],
+    tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Notion",u:"https://notion.so",free:true}],
+    resources:[
+      {icon:"📖",title:"OpenAI Prompt Engineering Guide",desc:"Official guide from the makers of ChatGPT.",url:"https://platform.openai.com/docs/guides/prompt-engineering"}
+    ],
+    deliverable:{title:"Prompt Library",body:`A Notion page with <strong>8 reusable prompt templates</strong> across 4 categories. Each one tested and confirmed to produce good results. This is Portfolio Piece #2 — a real deliverable you can show employers.`},
+    tip:"Save every great prompt you write. Treat them like money. A library of 50 tested prompts makes you immediately useful on your first day at any job.",
+    milestone:null
+  },
+  {
+    n:5,title:"AI for Research & Analysis",sub:"Find and understand information 10x faster than anyone else",
+    tags:[["Tools","tt"],["Content","tc"]],
+    explainer:`One of the most underrated AI skills is <strong>using it to research and analyze</strong>. This is not just "Googling better" — it's the ability to take complex information and transform it into useful, clear knowledge. Journalists, consultants, analysts, and entrepreneurs pay a lot of money for people who can do this well. You'll learn it today for free.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Test Perplexity vs Google:</strong> Go to <a href="https://perplexity.ai" target="_blank">Perplexity.ai</a> and search: <em>"What are the most in-demand AI jobs in the Arab world in 2025?"</em> Then search the same thing in Google. Compare: which gives better sources? Which is easier to read? Which saves more time? Write 3 observations.`},
+      {v:"v-t",t:`<strong>Article summarization skill:</strong> Find any long English article online (BBC, TechCrunch, etc.). Copy all the text. Go to Claude. Paste the article and send: <em>"Summarize this article in exactly 5 bullet points. Each bullet should be one clear sentence. End with: 'The most important takeaway is: [one sentence]'."</em> Practice this 3 times with different articles.`},
+      {v:"v-a",t:`<strong>The fact-check habit — this is critical:</strong> Ask ChatGPT: <em>"List 5 statistics about AI job growth in Egypt in 2025."</em> Then pick ONE statistic it gives you and Google it. Does it actually exist? Can you find a real source? AI sometimes invents facts (called "hallucination"). Always verify anything you'll show to a client or employer.`},
+      {v:"v-b",t:`<strong>Build a research brief:</strong> Use Perplexity + Claude together to research the topic: <em>"The state of AI tools adoption by small businesses in Egypt."</em> Perplexity finds sources. Claude synthesizes them. Write a 300-word brief with 3 key findings, 2 real examples, and 1 recommendation. Format it nicely in Notion.`}
+    ],
+    tools:[{n:"Perplexity AI",u:"https://perplexity.ai",free:true},{n:"Claude",u:"https://claude.ai",free:true},{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Notion",u:"https://notion.so",free:true}],
+    resources:[
+      {icon:"🔍",title:"Perplexity AI — AI-Powered Search",desc:"The best research tool available free. Better than Google for most things.",url:"https://perplexity.ai"}
+    ],
+    deliverable:{title:"AI Research Brief",body:`A 300-word Notion document titled <strong>"AI Adoption by Small Businesses in Egypt — 2025."</strong> It should have: an intro, 3 key findings, and 1 recommendation. Written by you, researched with AI. Add it to your portfolio.`},
+    tip:"The AI researcher who also knows how to fact-check is worth twice as much as one who doesn't. This habit alone will save you from embarrassing mistakes in front of clients.",
+    milestone:null
+  },
+  {
+    n:6,title:"AI Image Generation",sub:"Create professional images without any design skills",
+    tags:[["Content","tc"],["Tools","tt"]],
+    explainer:`You don't need Photoshop. You don't need design training. With AI image tools, you can create <strong>professional-grade visuals in 30 seconds</strong> — the kind of images that brands pay designers hundreds of dollars for. This is one of the most visible, shareable skills you'll build. When people see what you can create, they want to hire you immediately.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Your first 10 images on Leonardo.ai:</strong> Go to <a href="https://leonardo.ai" target="_blank">Leonardo.ai</a> (free, 150 credits/day). Try these 10 prompts one by one. Study how changing ONE word changes everything: <em>1) "a coffee shop in Cairo at sunset" — 2) "a futuristic coffee shop in Cairo at sunset, cinematic" — 3) "a cozy Egyptian coffee shop, warm lighting, film photography, 35mm" — 4) "Cairo skyline at night, neon lights, digital art" — 5) "Egyptian woman entrepreneur at desk, professional, natural light, portrait photography, 85mm lens" — and 5 of your own.</em>`},
+      {v:"v-t",t:`<strong>Learn the image prompt formula:</strong> Every great image prompt = <strong>Subject + Setting + Style + Lighting + Camera/Lens + Mood</strong>. Write this formula in your notebook and keep it visible while you work. Test it with 5 different subjects. Compare your formula-based results to your early random attempts.`},
+      {v:"v-a",t:`<strong>Canva AI — create your first designed post:</strong> Go to <a href="https://canva.com" target="_blank">Canva</a>. Click "Create a design" → Instagram Post. Use the "Text to Image" AI feature to generate a background. Add text using AI-suggested copy. Make a post for a fictional Cairo-based brand. Export it as PNG.`},
+      {v:"v-b",t:`<strong>Microsoft Designer for variety:</strong> Go to <a href="https://designer.microsoft.com" target="_blank">designer.microsoft.com</a> (completely free). Generate 5 more images. Notice the difference in style vs Leonardo. Try a professional headshot prompt: <em>"Professional LinkedIn headshot, young Egyptian man, confident smile, clean white background, studio lighting, photorealistic"</em>.`}
+    ],
+    tools:[{n:"Leonardo AI",u:"https://leonardo.ai",free:true},{n:"Canva",u:"https://canva.com",free:true},{n:"Microsoft Designer",u:"https://designer.microsoft.com",free:true},{n:"Adobe Firefly",u:"https://firefly.adobe.com",free:true}],
+    resources:[
+      {icon:"🎨",title:"Leonardo AI — Free Image Generation",desc:"150 free credits per day. Best free image tool available.",url:"https://leonardo.ai"},
+      {icon:"🎨",title:"Microsoft Designer — 100% Free",desc:"No limits. Microsoft's AI image and design tool.",url:"https://designer.microsoft.com"},
+      {icon:"🎨",title:"Adobe Firefly — Free",desc:"Adobe's AI tool. Excellent for professional-looking images.",url:"https://firefly.adobe.com"}
+    ],
+    deliverable:{title:"AI Social Media Post",body:`A fully designed <strong>Instagram post (1080×1080px)</strong> made in Canva using an AI-generated image + AI-written caption. Export as PNG. Upload it to your Notion portfolio with a short note: "Created using Leonardo.ai + Canva AI. Zero design training required."`,},
+    tip:"The image prompt is just as important as the text prompt. The more specific you are — lighting, lens, mood, style — the more professional the result. Vague prompts produce vague images.",
+    milestone:null
+  },
+  {
+    n:7,title:"Week 1 Review + First Published Portfolio Piece",sub:"Prove to yourself that you're already capable",
+    tags:[["Portfolio","tx"]],
+    explainer:`Today is proof day. You've spent 6 days learning. Now you're going to <strong>produce something real</strong> — a published blog post that lives on the internet, that anyone can read, and that you can show employers. This is the moment where "learning" becomes "doing." The gap between the two is where most people quit. Don't be most people.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Write your first professional blog post</strong> (entirely using AI + your editing): Topic — <em>"What Is Generative AI and Why Every Egyptian Business Should Care in 2025."</em> Go to Claude and send: <em>"Write a 350-word blog post on this topic. Audience: Egyptian business owners aged 30–50 with no tech background. Tone: clear, confident, slightly urgent. Structure: short intro → 3 key points → clear conclusion with a call to action."</em>`},
+      {v:"v-t",t:`<strong>Edit the AI output — this is the important part:</strong> Read Claude's draft. Change at least 4 sentences to sound more like you. Add one real Egyptian example or reference. Fix any sentence that sounds "AI-robotic." Make sure it flows naturally when read out loud. This editing skill is what makes you valuable — not just the generation.`},
+      {v:"v-a",t:`<strong>Create the featured image</strong> using Leonardo.ai. Prompt suggestion: <em>"Egyptian business professional using a laptop and AI tools, modern Cairo office, professional photography, clean, editorial style."</em> Download it.`},
+      {v:"v-b",t:`<strong>Publish on Notion:</strong> In your portfolio Notion page, create a new sub-page. Paste the article. Add the image. Make the page public (Share → Share to web → On). Copy the public link. This is now a live URL on the internet with your name on it.`},
+      {v:"v-r",t:`<strong>Self-assessment (honest):</strong> Write in Notion: Which of the 6 topics this week do I feel most confident about? Which one felt hardest? What do I want to learn more of? Honest answers help you build Week 2 better.`}
+    ],
+    tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"Leonardo AI",u:"https://leonardo.ai",free:true},{n:"Notion",u:"https://notion.so",free:true}],
+    resources:[
+      {icon:"📋",title:"Notion — Make Page Public",desc:"Go to Share → Share to web → Toggle On. Copy link.",url:"https://notion.so/help/public-pages-and-web-publishing"}
+    ],
+    deliverable:{title:"Your First Published Blog Post 🎉",body:`A <strong>live, publicly accessible Notion page</strong> with your 350-word blog post, a featured AI-generated image, and your name on it. Copy and save this URL. This is <strong>Portfolio Piece #1</strong> — the first thing you built that exists on the real internet.`},
+    tip:"Don't wait until it's perfect. Publish it. A published imperfect piece beats an unpublished perfect one every single time. You can always improve it later.",
+    milestone:"🎯 Phase 1 Complete! You've built your mental foundation, set up your tools, learned prompting, and published your first real piece of work. You're already ahead of 90% of people your age. Phase 2 is where things get seriously exciting."
+  }
+  ]
+},
+{
+  id:2,icon:"⚡",ph:"ph2",name:"Phase 2 — Specialization & Deep Skills",range:"Days 8–18",
+  desc:"Now you go deep. Phase 2 covers all 4 roles you're targeting: Prompt Engineer, AI Content Creator, No-Code Automation Builder, and AI Tools Specialist. By Day 18 you'll have real, tested skills in every one of them — plus the vocabulary to talk about them in any job interview.",
+  days:[
+  {
+    n:8,title:"Business Prompt Engineering",sub:"The prompts companies actually pay money for",
+    tags:[["Prompt Eng","tp"]],
+    explainer:`There's a big difference between prompting for fun and prompting for a business. When companies hire prompt engineers, they need <strong>consistent, repeatable, professional outputs</strong> — not one-off cool results. Today you learn how to build the kind of prompt systems that businesses actually deploy. This is the day your skill becomes genuinely employable.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Study the 5 most common business prompt use cases:</strong> Open Claude and paste this: <em>"I want to understand the 5 most common ways companies use AI prompting professionally. For each, give me: the use case name, why businesses need it, and one example prompt template. The 5 are: (1) Customer support replies (2) Professional email drafting (3) SEO blog content (4) Meeting summarization (5) Job description writing."</em> Read all 5 carefully. Take notes.`},
+      {v:"v-t",t:`<strong>Build a Customer Support System Prompt:</strong> A "System Prompt" is a set of instructions given to AI before any conversation starts. It defines the AI's personality, rules, and limits. Write a system prompt for a fictional Egyptian electronics store called "Nile Tech." It should define: the assistant's name, tone, what it can and cannot help with, and how to handle angry customers. Test it in Claude's system prompt field.`},
+      {v:"v-a",t:`<strong>Write 3 professional email templates</strong> using AI: (1) A follow-up email after a job interview (2) A cold outreach email introducing your AI services to a small business (3) A polite email declining a request while keeping the relationship good. For each, write the prompt, generate the email, then edit it until it sounds human and professional.`},
+      {v:"v-b",t:`<strong>Build your Business Prompt Library in Notion</strong> — a page with 10 ready-to-use prompt templates across 5 business scenarios (2 templates per scenario). Each entry should have: the prompt title, who uses it, the full prompt template with [PLACEHOLDER] labels for customizable parts, and an example output. This is a real portfolio asset.`}
+    ],
+    tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Notion",u:"https://notion.so",free:true}],
+    resources:[
+      {icon:"📖",title:"Anthropic Prompt Library",desc:"Real, tested prompts used by professionals worldwide.",url:"https://anthropic.com/prompts"},
+      {icon:"📖",title:"OpenAI Cookbook",desc:"Real prompt examples and techniques from OpenAI engineers.",url:"https://cookbook.openai.com"}
+    ],
+    deliverable:{title:"Business Prompt Library",body:`A Notion page with <strong>10 tested business prompt templates</strong> across 5 scenarios. Each one should be ready to copy-paste and customize. This is <strong>Portfolio Piece #3</strong> — and it's the kind of thing companies literally pay consultants to build.`},
+    tip:"The person who can write a great customer support prompt that handles 95% of questions without human intervention just saved a company $30,000/year. That's your value.",
+    milestone:null
+  },
+  {
+    n:9,title:"AI Content Creation — Written",sub:"Produce professional written content at scale",
+    tags:[["Content","tc"]],
+    explainer:`Content is the currency of the internet. Every brand, every business, every creator needs a constant flow of high-quality written content — and most of them are struggling to keep up. <strong>AI content creation is not about replacing writers — it's about making one person produce what used to take a team of five.</strong> That person can be you, starting today.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Write a full LinkedIn article using AI:</strong> Choose a topic you find interesting in tech, business, or AI. Use Claude to write a 600-word article. Your prompt should specify: the target reader (young Egyptian professionals), the tone (confident, slightly informal), and structure (hook intro → 3 main points with subheadings → actionable conclusion). Then edit 30% of it yourself to sound less robotic.`},
+      {v:"v-t",t:`<strong>Platform-specific content — same product, 5 different voices:</strong> Pick a fictional Cairo café called "Heliopolis Brew." Ask Claude to write a caption for this café's opening for each platform: Instagram (visual, emotional, 80 words), LinkedIn (professional story, 150 words), Twitter/X (punchy, clever, under 280 chars), Facebook (community-friendly, 100 words), TikTok (conversational, 60 words like a person talking). Compare how the tone shifts.`},
+      {v:"v-a",t:`<strong>Learn basic SEO for AI content:</strong> Ask ChatGPT: <em>"Explain what SEO keywords are and how to use them in a blog post — for someone with zero marketing background."</em> Then write a 150-word blog intro paragraph optimized for the keyword phrase "AI tools for Egyptian small businesses." Check it includes the keyword naturally 2-3 times without sounding forced.`},
+      {v:"v-b",t:`<strong>The human-voice edit:</strong> Take the LinkedIn article from Task 1. Read it out loud. Every sentence that makes you pause, rewrite it. Add one personal opinion. Add one real example from Egypt. Replace 5 AI-sounding words ("delve", "leverage", "crucial", "foster", "utilize") with simpler alternatives. The edited version goes in your portfolio.`}
+    ],
+    tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Notion",u:"https://notion.so",free:true}],
+    resources:[
+      {icon:"📖",title:"Copy.ai Blog — Content Marketing with AI",desc:"Real tutorials on AI content creation for professionals.",url:"https://www.copy.ai/blog"}
+    ],
+    deliverable:{title:"Content Creation Pack",body:`A Notion page with: (1) Your edited 600-word LinkedIn article (2) 5 platform-specific captions for Heliopolis Brew (3) Your SEO blog intro. Label it <strong>"AI Content Creation — Sample Pack."</strong> This is <strong>Portfolio Piece #4</strong>.`},
+    tip:"The AI content creator who also knows HOW to edit — removing robotic phrases, adding human voice, making it sound real — earns 3x more than someone who just copies AI output.",
+    milestone:null
+  },
+  {
+    n:10,title:"AI Visual Content Creation",sub:"Professional design without a design degree",
+    tags:[["Content","tc"]],
+    explainer:`Visual content gets <strong>3x more engagement</strong> than text alone on every platform. Until recently, creating great visuals required years of Photoshop training or expensive designers. Now it takes 10 minutes and a good prompt. This is one of the most immediately impressive skills you can show — because employers can see the result instantly.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Full brand kit in Canva AI:</strong> Go to <a href="https://canva.com" target="_blank">Canva</a>. You're creating a social media brand kit for a fictional brand: <strong>"Sinai Outdoor Co."</strong> — an Egyptian outdoor adventure company. Create: (1) Profile picture (500×500, logo style, text + mountain icon) (2) Facebook cover photo (1640×924, dramatic landscape) (3) 3 Instagram post templates (1080×1080 each, branded, with placeholder text boxes). Use consistent colors throughout — pick 2 brand colors and stick to them.`},
+      {v:"v-t",t:`<strong>Adobe Firefly for professional images:</strong> Go to <a href="https://firefly.adobe.com" target="_blank">firefly.adobe.com</a> (free, no download needed). Generate 10 images with different styles. Try: product photography, editorial portrait, architectural, abstract, and illustration styles. Compare each to what you'd get on Leonardo.ai. Write 3 observations about where each tool excels.`},
+      {v:"v-a",t:`<strong>Build an infographic in Canva:</strong> Create a single Canva graphic titled: <em>"5 AI Tools Every Egyptian Business Owner Needs in 2025."</em> Ask Claude to write the 5 tools with a one-sentence description each. Design it with: a clear headline, 5 numbered sections, icons for each, and your brand colors. Export as PNG and PDF.`},
+      {v:"v-b",t:`<strong>Learn brand consistency:</strong> Open any successful brand's Instagram page (Nike, Noon, or any Egyptian brand you admire). Screenshot 9 consecutive posts. Notice: do they use the same colors? Same font? Same image filter? Same layout style? Write 5 observations. Then apply ONE consistency rule to your Sinai Outdoor Co. kit.`}
+    ],
+    tools:[{n:"Canva",u:"https://canva.com",free:true},{n:"Adobe Firefly",u:"https://firefly.adobe.com",free:true},{n:"Leonardo AI",u:"https://leonardo.ai",free:true}],
+    resources:[
+      {icon:"🎨",title:"Canva Design School — Free",desc:"Free design tutorials inside Canva. Worth 1 hour of your time.",url:"https://www.canva.com/designschool/"},
+      {icon:"🎨",title:"Adobe Firefly — Free Image Generation",desc:"Professional-grade results. No account needed for basic use.",url:"https://firefly.adobe.com"}
+    ],
+    deliverable:{title:"Social Media Brand Kit",body:`A complete Canva brand kit for Sinai Outdoor Co. — profile pic, cover photo, 3 post templates, and the infographic. Export everything as a PDF portfolio package. This is <strong>Portfolio Piece #5</strong> and a real product you can sell to local businesses for 2,000–5,000 EGP.`},
+    tip:"Canva + AI image generation + good prompt skills = you can charge 3,000 EGP for a brand kit that takes you 3 hours to make. That math works.",
+    milestone:null
+  },
+  {
+    n:11,title:"AI Video Creation",sub:"Make videos without a camera, crew, or studio",
+    tags:[["Content","tc"]],
+    explainer:`Video is the most consumed content format on the internet — by a huge margin. But producing video used to require cameras, editing software, actors, and hours of work. <strong>AI video tools have completely changed this equation.</strong> You can now create a professional 60-second video in under an hour, with voiceover, visuals, and music — all from your laptop.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Text-to-video with Lumen5:</strong> Go to <a href="https://lumen5.com" target="_blank">lumen5.com</a> (free account). Paste your Day 7 blog post into the tool. Watch it automatically convert to a 60-second video with visuals, text overlays, and music. Edit the automatically chosen scenes — replace any that don't match the content. This takes 20 minutes and produces a real video.`},
+      {v:"v-t",t:`<strong>AI video creation with InVideo:</strong> Go to <a href="https://invideo.io" target="_blank">invideo.io</a> (free tier). Click "AI Video" and type this prompt: <em>"Create a 30-second explainer video for a fictional app called 'Waqti' — an AI-powered time management app for Egyptian university students. Upbeat, modern style."</em> Let the AI generate it. Then customize the text and scenes.`},
+      {v:"v-a",t:`<strong>AI voiceover with ElevenLabs:</strong> Go to <a href="https://elevenlabs.io" target="_blank">elevenlabs.io</a> (free tier — 10,000 characters/month). Write a 100-word voiceover script for your Sinai Outdoor Co. brand. Try 3 different AI voices. Choose the one that fits the brand. Download the audio file (MP3).`},
+      {v:"v-b",t:`<strong>Combine everything — professional AI video workflow:</strong> Take your InVideo video. Add the ElevenLabs voiceover by uploading it as audio. Mute the original video audio. Export the final video. You have just produced a professional marketing video using 100% AI tools, with zero camera, zero acting, and zero video editing software.`}
+    ],
+    tools:[{n:"Lumen5",u:"https://lumen5.com",free:true},{n:"InVideo AI",u:"https://invideo.io",free:true},{n:"ElevenLabs",u:"https://elevenlabs.io",free:true}],
+    resources:[
+      {icon:"▶",title:"Lumen5 — Text to Video Free",desc:"Paste text → get a video. Incredibly fast for beginners.",url:"https://lumen5.com"},
+      {icon:"▶",title:"InVideo AI — Free Video Creator",desc:"Best free AI video creation tool available right now.",url:"https://invideo.io"},
+      {icon:"🎙",title:"ElevenLabs — Free AI Voices",desc:"10,000 characters free per month. Realistic AI voiceovers.",url:"https://elevenlabs.io"}
+    ],
+    deliverable:{title:"AI-Produced Video",body:`One <strong>30–60 second marketing video</strong> with AI-generated visuals + AI voiceover. Save the MP4 file. Upload to Google Drive and add the link to your Notion portfolio. This is <strong>Portfolio Piece #6</strong>. Many freelancers charge $150–$400 per video like this.`},
+    tip:"AI video creation is one of the fastest growing freelance skills on Fiverr and Upwork right now. A single good video gig on Fiverr can bring in $200–$500 per order.",
+    milestone:null
+  },
+  {
+    n:12,title:"No-Code Automation — Part 1 (Make.com Basics)",sub:"Make computers work for you while you sleep",
+    tags:[["Automation","ta"]],
+    explainer:`Automation is the skill that made some people rich without writing a single line of code. <strong>Make.com</strong> (formerly Integromat) lets you connect apps together so they automatically pass information between each other. When X happens → do Y. It sounds simple, but the applications are enormous. Every business has repetitive tasks that waste hours every week — and you can automate all of them. This is one of the highest-paying AI-adjacent skills available right now.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Get started on Make.com:</strong> Create a free account at <a href="https://make.com" target="_blank">make.com</a>. Watch their official beginner video: search YouTube for <em>"Make.com tutorial for beginners 2024"</em> by the official Make channel (it's about 15 minutes). Don't skip this — the video will save you 2 hours of confusion. Write down the definitions of: Scenario, Trigger, Action, Module, and Bundle.`},
+      {v:"v-t",t:`<strong>Build Automation #1 — Gmail to Telegram:</strong> In Make.com, create a new Scenario. Add the <strong>Gmail</strong> module as trigger (watch for new emails with "urgent" in the subject). Add a <strong>Telegram Bot</strong> module as action (send yourself a message with the email subject and sender). Run it once. Send yourself a test email with "urgent" in the subject and watch the Telegram message arrive automatically. Screenshot the workflow.`},
+      {v:"v-a",t:`<strong>Build Automation #2 — Daily Quote to Telegram:</strong> Create a new Scenario. Use the <strong>HTTP module</strong> as trigger pointed at this free API URL: <code>https://api.quotable.io/random</code> — set it to run on a schedule (every day at 9am Cairo time). Add a Telegram module to send the quote text to yourself. Screenshot both the setup and a received quote.`},
+      {v:"v-b",t:`<strong>Document your automations:</strong> For each one, write in Notion: What does it do? What's the trigger? What's the action? How much time does it save per week? Who would pay for this? Practice describing it in business language — not technical language. <em>"This automation monitors incoming emails and sends instant mobile alerts for urgent messages — eliminating the need to constantly check email."</em>`}
+    ],
+    tools:[{n:"Make.com",u:"https://make.com",free:true},{n:"Telegram",u:"https://telegram.org",free:true},{n:"Gmail",u:"https://gmail.com",free:true}],
+    resources:[
+      {icon:"⚙",title:"Make.com — Free Automation Platform",desc:"1,000 operations/month free. Enough for all your projects here.",url:"https://make.com"},
+      {icon:"▶",title:"Make.com YouTube Channel",desc:"Official tutorials. 'Beginner' series is exactly what you need.",url:"https://youtube.com/@make"}
+    ],
+    deliverable:{title:"Two Working Automations",body:`Screenshots of both Make.com scenarios + a Notion page describing each one in business language. Include a photo of the Telegram message you received. This is <strong>Portfolio Piece #7</strong>.`},
+    tip:"Every automation you build is a product. The right client will pay $50–$200/month for a running automation. Think about WHO would pay for each one you build.",
+    milestone:null
+  },
+  {
+    n:13,title:"No-Code Automation — Part 2 (AI-Powered)",sub:"Connect real AI brains to your automations",
+    tags:[["Automation","ta"]],
+    explainer:`Yesterday's automations moved data between apps. Today's automations think. By connecting <strong>OpenAI's API inside Make.com</strong>, your automations can now read, understand, write, summarize, and respond — automatically. This combination is what companies call "AI Automation" and it's one of the hottest services being sold right now. You're about to build two real examples.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Get your OpenAI API key (free):</strong> Go to <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a>. Create a free account. Click "Create new secret key." Copy and save it somewhere safe — you only see it once. Note: Free tier gives you limited credits, but enough for testing. In Make.com, go to Connections → Add → OpenAI → paste your key.`},
+      {v:"v-t",t:`<strong>Build AI Automation #1 — Auto Email Responder:</strong> Scenario: Google Form submission → OpenAI generates a personalized reply → Gmail sends it. Set up a simple Google Form asking: Name, Question, Email. In Make.com: Google Forms module (new response) → OpenAI module (prompt: "Write a warm, professional 3-sentence reply to this question from [name]: [question]") → Gmail module (send to their email). Test with 5 different questions.`},
+      {v:"v-a",t:`<strong>Build AI Automation #2 — News Summarizer:</strong> Scenario: RSS feed from any news site → OpenAI summarizes each new article → summary saved to Google Sheets. Choose an RSS feed (try: <code>https://feeds.bbci.co.uk/news/technology/rss.xml</code>). OpenAI prompt: "Summarize this article in exactly 3 bullet points, each under 15 words. Article: [content]." Add a Google Sheets module to log: date, headline, 3-bullet summary.`},
+      {v:"v-b",t:`<strong>Write a product description for each automation.</strong> For each one, write in Notion exactly as if you're selling it to a client: What problem does it solve? How much time/money does it save? Who specifically would buy this? How much would you charge? Example: <em>"This system handles 100% of initial customer inquiry emails automatically, generating personalized AI responses in under 30 seconds — saving 2–3 hours of staff time per day."</em>`}
+    ],
+    tools:[{n:"Make.com",u:"https://make.com",free:true},{n:"OpenAI API",u:"https://platform.openai.com",free:true},{n:"Google Sheets",u:"https://sheets.google.com",free:true},{n:"Google Forms",u:"https://forms.google.com",free:true}],
+    resources:[
+      {icon:"⚙",title:"OpenAI API Keys — Get Yours Free",desc:"Create a free key. Needed to connect AI to Make.com.",url:"https://platform.openai.com/api-keys"},
+      {icon:"▶",title:"YouTube — Make.com + ChatGPT Tutorial",desc:"Search: 'Make.com ChatGPT automation tutorial 2024'",url:"https://youtube.com"}
+    ],
+    deliverable:{title:"AI-Powered Automation System",body:`One fully working AI automation (the email responder OR the news summarizer) + a client-ready product description. Screenshots of the Make.com scenario + Google Sheets output. This is <strong>Portfolio Piece #8</strong>.`},
+    tip:"This is the combination that AIaaS companies sell for $500–$2,000 as a setup fee plus monthly retainer. You just built a version of it yourself, for free.",
+    milestone:null
+  },
+  {
+    n:14,title:"No-Code Chatbot Building",sub:"Build AI assistants that work 24/7 for any business",
+    tags:[["Automation","ta"],["Tools","tt"]],
+    explainer:`A chatbot is a <strong>24/7 AI employee</strong> that never gets tired, never calls in sick, and answers customer questions instantly — at 3am just as well as 3pm. For small businesses in Egypt that can't afford a full-time customer service team, this is a game-changer. <span class="hl">Building these chatbots is one of the most in-demand freelance AI services available right now</span> — and you're going to learn how to build professional ones today.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Set up Chatbase:</strong> Create a free account at <a href="https://chatbase.co" target="_blank">chatbase.co</a>. First, create a Knowledge Base document — a Google Doc with 20 Q&A pairs for a fictional business: <strong>"Zaman Restaurant"</strong> (Egyptian cuisine, downtown Cairo). Include questions about: opening hours, menu highlights, reservations, delivery, allergies, price range, parking, and special events. Download as PDF.`},
+      {v:"v-t",t:`<strong>Upload and configure your chatbot:</strong> In Chatbase, create a new chatbot. Upload your PDF. Give the chatbot a name: <em>"Hamid — Zaman Restaurant Assistant."</em> Write a system prompt: <em>"You are Hamid, the friendly digital assistant for Zaman Restaurant in Cairo. You answer questions about the restaurant warmly and helpfully. If you don't know something, say: 'I'd recommend calling us directly at [number] to confirm!' Always be warm and welcoming."</em>`},
+      {v:"v-a",t:`<strong>Test your chatbot rigorously — 15 questions:</strong> Test these: 1) "What time do you open?" 2) "Do you have vegetarian options?" 3) "How much is a main dish?" 4) "Can I book a table for 10?" 5) "Do you deliver?" 6) "Is there parking?" 7) "What's the best dish?" 8) "Are you open on Fridays?" 9) "Do you have a kids menu?" 10) "What's your phone number?" — plus 5 questions you invent. Rate each response 1–5. Fix any major failures by updating the knowledge base.`},
+      {v:"v-b",t:`<strong>Explore Voiceflow for advanced flows:</strong> Create a free account at <a href="https://voiceflow.com" target="_blank">voiceflow.com</a>. Build a simple 3-step conversation flow: Greeting → "Are you asking about (1) Reservations or (2) Menu?" → Different response for each choice. This "decision tree" style is how enterprise chatbots are built. Screenshot the flow diagram.`}
+    ],
+    tools:[{n:"Chatbase",u:"https://chatbase.co",free:true},{n:"Voiceflow",u:"https://voiceflow.com",free:true},{n:"Claude",u:"https://claude.ai",free:true}],
+    resources:[
+      {icon:"🤖",title:"Chatbase — Free Chatbot Builder",desc:"Upload documents → get a working chatbot. No coding.",url:"https://chatbase.co"},
+      {icon:"🤖",title:"Voiceflow — Professional Chatbot Design",desc:"Industry standard for building complex conversation flows.",url:"https://voiceflow.com"}
+    ],
+    deliverable:{title:"Live Restaurant Chatbot",body:`A publicly accessible Chatbase chatbot for Zaman Restaurant + a mini case study in Notion: the problem, your solution, test results (score out of 15), and the embed link. This is <strong>Portfolio Piece #9</strong>. A chatbot project like this sells for 5,000–20,000 EGP to small businesses.`},
+    tip:"Restaurants, clinics, gyms, and law offices near you are paying for exactly this — and most don't even know AI chatbots exist yet. You have an advantage that expires. Use it now.",
+    milestone:null
+  },
+  {
+    n:15,title:"AI Productivity & Business Tools",sub:"Become 10x faster at everything you do",
+    tags:[["Tools","tt"]],
+    explainer:`Being able to use AI tools for your own productivity is different from building things with AI — and just as valuable. <strong>Companies need people who can run faster, produce more, and do it with fewer errors.</strong> Today you master 4 tools that directly demonstrate your ability to operate at a professional level. These are also great for your own life — starting today.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Notion AI — your thinking partner:</strong> Inside your Notion portfolio, try all 3 AI commands: (1) Click anywhere in a page → AI → "Write a meeting agenda for a 30-minute client kickoff call" (2) Write any paragraph you've written this week → select it → AI → "Improve writing" (3) Create a new page → AI → "Summarize this week's tasks and identify my top 3 priorities." These 3 uses alone save 30 minutes a day.`},
+      {v:"v-t",t:`<strong>Gamma.app — presentations in 5 minutes:</strong> Go to <a href="https://gamma.app" target="_blank">gamma.app</a> (free). Click "Generate." Type this prompt: <em>"A professional 8-slide presentation titled '5 AI Tools Every Egyptian Business Needs in 2025.' Audience: business owners. Include: intro, 5 tool slides (one per tool), and a conclusion with next steps."</em> Watch it build. Edit the content. This is better than most PowerPoints made in 2 hours.`},
+      {v:"v-a",t:`<strong>Otter.ai — never lose an idea again:</strong> Go to <a href="https://otter.ai" target="_blank">otter.ai</a> (free tier). On your phone, open the Otter app. Press record. Speak out loud for 2 minutes — describe your biggest career goal and 3 steps to achieve it. Stop recording. Watch Otter transcribe it automatically. Use Claude to summarize the transcript into 3 action points.`},
+      {v:"v-b",t:`<strong>Grammarly — write like a professional immediately:</strong> Install the <a href="https://grammarly.com" target="_blank">Grammarly</a> Chrome extension (free). Open your blog post from Day 7. Let Grammarly analyze it. Read every suggestion and understand WHY it's being made — not just accepting it blindly. This is how you improve your writing while using AI at the same time.`}
+    ],
+    tools:[{n:"Notion AI",u:"https://notion.so",free:true},{n:"Gamma.app",u:"https://gamma.app",free:true},{n:"Otter.ai",u:"https://otter.ai",free:true},{n:"Grammarly",u:"https://grammarly.com",free:true}],
+    resources:[
+      {icon:"📊",title:"Gamma.app — AI Presentations",desc:"Best free tool for AI-generated presentations. Much better than PowerPoint.",url:"https://gamma.app"},
+      {icon:"🎙",title:"Otter.ai — Free AI Transcription",desc:"600 minutes free per month. Records and transcribes any conversation.",url:"https://otter.ai"}
+    ],
+    deliverable:{title:"AI Productivity Presentation",body:`Your Gamma.app presentation: <strong>"5 AI Tools Every Egyptian Business Needs in 2025"</strong> — 8 slides, AI-generated, professionally edited by you. Share the public Gamma link. This is <strong>Portfolio Piece #10</strong>.`},
+    tip:"Gamma.app is one of the most immediately impressive tools you can demo in a job interview. 'I built this presentation in 5 minutes' — and it looks better than most human-made slides.",
+    milestone:null
+  },
+  {
+    n:16,title:"AI Data Analysis",sub:"Understand data and find insights — no coding, no Excel mastery",
+    tags:[["Tools","tt"]],
+    explainer:`Data analysis is one of the most valuable skills in any business — and historically, it required years of Excel or coding experience. <strong>AI has completely changed this.</strong> With ChatGPT's Code Interpreter, you can now upload a spreadsheet of data and have it create charts, find trends, and explain what the data means — in plain English. This skill is genuinely rare and highly paid.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Get a free dataset:</strong> Go to <a href="https://kaggle.com/datasets" target="_blank">kaggle.com/datasets</a>. Search for "Egypt" or "Middle East" or any topic you find interesting. Download any CSV file under 10MB. Good options: population data, sales data, economic indicators. You can also search "free CSV sample dataset" and download any results.`},
+      {v:"v-t",t:`<strong>AI data analysis in ChatGPT:</strong> Open ChatGPT (you need a free account). Click the "+" button to upload a file. Upload your CSV. Then send this prompt: <em>"Analyze this dataset. Tell me: (1) What does this data measure? (2) What are the top 3 interesting patterns or trends you see? (3) Create a bar chart showing the most important relationship in the data. (4) What would you recommend based on this data?"</em>`},
+      {v:"v-a",t:`<strong>Text-based analysis in Claude:</strong> Take a simple table from any website (e.g., a comparison of product prices, or country statistics). Copy it as plain text. Paste it into Claude with: <em>"Analyze this table. What is the most surprising finding? What would you recommend to a business based on this? Write your answer in 200 words, plain language, no technical jargon."</em>`},
+      {v:"v-b",t:`<strong>Write a data analysis mini-report in Notion:</strong> Combine your findings into a 300-word report with this structure: Dataset Overview (2 sentences) → Key Finding #1 → Key Finding #2 → Key Finding #3 → What I Would Recommend. Add 2 screenshots of the charts ChatGPT generated. Label it clearly.`}
+    ],
+    tools:[{n:"ChatGPT",u:"https://chat.openai.com",free:true},{n:"Claude",u:"https://claude.ai",free:true},{n:"Kaggle",u:"https://kaggle.com/datasets",free:true}],
+    resources:[
+      {icon:"📊",title:"Kaggle — Free Datasets",desc:"Thousands of free datasets on every topic. No account needed to download.",url:"https://kaggle.com/datasets"}
+    ],
+    deliverable:{title:"Data Analysis Mini-Report",body:`A Notion page with your <strong>300-word analysis report</strong> + 2 AI-generated charts + 3 key findings + 1 recommendation. This is <strong>Portfolio Piece #11</strong> — it demonstrates a high-value skill that most people your age cannot do.`},
+    tip:"If you can say in a job interview: 'I uploaded a 10,000-row dataset and produced a 5-chart analysis with insights in 20 minutes using AI' — that is immediately impressive to any hiring manager.",
+    milestone:null
+  },
+  {
+    n:17,title:"Understand the AI Business World",sub:"Know the industry you're about to enter",
+    tags:[["Tools","tt"],["Prompt Eng","tp"]],
+    explainer:`You've been building skills. Now let's understand <strong>who is going to pay you for those skills</strong>, and why. The AI industry is not just one type of company — it's a whole ecosystem of agencies, SaaS products, consultancies, and internal teams. Understanding how this ecosystem works makes you a smarter candidate and a more confident speaker in any interview.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Understand AIaaS — AI as a Service:</strong> Go to Perplexity.ai and search: <em>"What is AI as a Service? Give me 5 real examples of companies that sell AIaaS and explain what they sell and to whom."</em> Read the full result. Then ask Claude: <em>"Explain the AIaaS business model to me as if I'm 18 and just graduated. Use simple language and real examples."</em> Write a 150-word summary.`},
+      {v:"v-t",t:`<strong>Study 5 real AI job listings:</strong> Go to <a href="https://linkedin.com/jobs" target="_blank">LinkedIn Jobs</a>. Search these exact roles one at a time: "AI Prompt Engineer", "AI Content Specialist", "Automation Specialist", "No-Code Developer", "AI Tools Trainer." For each, copy the top 3 required skills. At the end, list the top 10 skills that appeared most across all 5 listings. Compare this to what you've already learned.`},
+      {v:"v-a",t:`<strong>Research 3 real AI companies:</strong> Find 3 companies that sell AI services (agencies, consultancies, or SaaS products). For each one, answer: What do they sell? Who are their clients? What roles do they hire for? What do they charge? Good search terms: "AI agency Cairo", "AI automation agency Egypt", "AI SaaS startup MENA", "AI content agency Middle East."`,},
+      {v:"v-b",t:`<strong>Map your skills gap:</strong> In Notion, create a table with 2 columns: "Skills employers want" and "My current level (1–5)." Rate yourself honestly. Then for every skill rated 1–2, identify which day in this curriculum addresses it. This is your personal roadmap for the rest of the month.`}
+    ],
+    tools:[{n:"LinkedIn Jobs",u:"https://linkedin.com/jobs",free:true},{n:"Perplexity AI",u:"https://perplexity.ai",free:true},{n:"Google",u:"https://google.com",free:true}],
+    resources:[
+      {icon:"💼",title:"LinkedIn Jobs — Find AI Roles",desc:"Search and save AI job listings. Study what employers want.",url:"https://linkedin.com/jobs"}
+    ],
+    deliverable:{title:"AI Industry Map",body:`A Notion page with: your 150-word AIaaS summary + 10 in-demand skills list + 3 company profiles + your honest skills gap table. This research becomes your cheat sheet before every interview.`},
+    tip:"Understanding why a company needs you — and what problem you solve for them — makes you sound like a professional in interviews, not a beginner. Most candidates never do this research.",
+    milestone:null
+  },
+  {
+    n:18,title:"Phase 2 Review + Mid-Point Portfolio",sub:"Organize, polish, and show the world what you've built",
+    tags:[["Portfolio","tx"]],
+    explainer:`You're at the halfway point. This is a crucial moment. Many people lose momentum here — not because they ran out of skills to learn, but because their work is scattered and they can't see how far they've come. Today you fix that. You're going to organize everything into a portfolio that <strong>clearly shows your skills and the value you bring</strong>. A good portfolio isn't just a collection — it tells a story.`,
+    tasks:[
+      {v:"v-p",t:`<strong>Select your 3 best pieces of work from Days 8–17.</strong> For each one, write in Notion: (1) A clear title (2) The problem it solves (3) How you built it — tools used, approach taken (4) The result — what it produced and what a client could do with it (5) What skill it proves you have. Write each description as if a recruiter who knows nothing about AI will read it. Use plain language, not technical jargon.`},
+      {v:"v-t",t:`<strong>Restructure your Notion portfolio home page</strong> into 4 clear sections with icons: 🧠 Prompt Engineering | 🎨 AI Content Creation | ⚙ AI Automation | 🛠 AI Tools & Productivity. Move every piece of work into the right section. Add a short 2-line description at the top of each section explaining what it covers.`},
+      {v:"v-a",t:`<strong>Write your portfolio intro:</strong> At the very top of your Notion home page, add: (1) Your full name (2) A professional photo or avatar (3) A 3-sentence bio: who you are, what you've built in the last 18 days, and what you're looking for. (4) Contact info. This is the first thing an employer sees. Make it count.`},
+      {v:"v-b",t:`<strong>Honest self-assessment:</strong> Write privately in Notion: Which of the 4 roles excites me most? Where did I produce work I'm most proud of? What do I want to get better at in Phase 3? This honesty shapes the quality of the next 12 days.`}
+    ],
+    tools:[{n:"Notion",u:"https://notion.so",free:true}],
+    resources:[],
+    deliverable:{title:"Organized Mid-Point Portfolio",body:`Your Notion portfolio — home page with intro + 4 organized sections + at least 5 documented projects. Make it public and test the link on your phone. Share the link with one person you trust and ask for 3 specific pieces of feedback.`},
+    tip:"A portfolio that tells a clear story beats a perfect portfolio that's confusing. Ask yourself: can a stranger understand what I do and what I can deliver within 60 seconds of visiting this page?",
+    milestone:"🎯 Phase 2 Complete! 18 days in. You have real skills in all 4 AI roles. You have 10+ portfolio pieces. You know the industry. Phase 3 is where you build the projects that employers will actually get excited about."
+  }
+  ]
+},
+{
+  id:3,icon:"🔨",ph:"ph3",name:"Phase 3 — Build Real Projects",range:"Days 19–26",
+  desc:"This is the phase that separates people who learned from people who can deliver. Every day in Phase 3 produces one complete, end-to-end project — the kind a client could use tomorrow, or an employer would hire you to build. These become the strongest entries in your portfolio.",
+  days:[
+  {n:19,title:"Project 1 — AI Brand Content System",sub:"A full weekly content plan for a real brand",tags:[["Content","tc"],["Prompt Eng","tp"]],explainer:`Today you build your first complete, sellable product. A <strong>weekly content system</strong> is one of the most purchased AI services right now — businesses need content constantly, and most can't produce it fast enough. You're going to build a full system for a fictional Egyptian brand, from scratch. By the end, you'll have something you could walk into any small business and offer immediately.`,tasks:[{v:"v-p",t:`<strong>Choose your brand:</strong> Pick one fictional Egyptian brand to work with: (A) <em>"Nile Fitness Studio"</em> — Cairo-based gym targeting young professionals (B) <em>"Baladi Bites"</em> — Egyptian street food brand going premium (C) <em>"TechCairo Academy"</em> — online tech skills courses for Egyptian students. Write a 1-paragraph brand brief: who they are, their audience, their 3 content goals, and their tone of voice.`},{v:"v-t",t:`<strong>Build the 1-week content calendar (21 posts):</strong> That's 7 days × 3 platforms (Instagram, LinkedIn, Facebook). Use Claude with this prompt for each day: <em>"You are a content strategist for [brand]. Write Day [X] content. Theme: [choose a theme for each day]. Provide: an Instagram caption (80 words, 2 emojis, 5 hashtags), a LinkedIn post (150 words, professional tone), and a Facebook post (100 words, community feel)."</em> Work through all 7 days.`},{v:"v-a",t:`<strong>Generate 7 brand images on Leonardo.ai</strong> — one for each day's theme. Stay consistent with colors, style, and mood. Save all 7 images in one folder.`},{v:"v-b",t:`<strong>Design all 21 posts in Canva.</strong> Create 3 templates (one per platform) and reuse them. Swap the image and copy for each day. Export as a PDF. This final PDF is your client deliverable.`}],tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"Leonardo AI",u:"https://leonardo.ai",free:true},{n:"Canva",u:"https://canva.com",free:true}],resources:[],deliverable:{title:"21-Post Content Calendar Package",body:`A PDF with all 21 designed posts + a 1-page content strategy brief. This is <strong>Portfolio Piece #12</strong>. Content calendar packages like this sell for 3,000–8,000 EGP to small Egyptian businesses.`},tip:"When you approach your first real client with this, say: 'I built this for a similar brand in 1 day using AI. I can do the same for you.' Then show them this PDF.",milestone:null},
+  {n:20,title:"Project 2 — Automated Lead Response System",sub:"AI that handles customer inquiries automatically",tags:[["Automation","ta"],["Prompt Eng","tp"]],explainer:`Every business gets inquiries — from contact forms, emails, Instagram DMs, and more. Most of them don't respond fast enough, and slow responses cost sales. <strong>You're building an automated system that responds intelligently within seconds of any inquiry</strong> — 24/7, without any human involvement. This is a real, deployable product that businesses pay recurring monthly fees for.`,tasks:[{v:"v-p",t:`<strong>Set up the intake form:</strong> Go to <a href="https://forms.google.com" target="_blank">Google Forms</a>. Create a contact form for your fictional business (from Day 19). Fields: Name, Email, Their Question, How did you hear about us? Publish it. Get the form URL. Test it by submitting 3 fake inquiries yourself.`},{v:"v-t",t:`<strong>Build the Make.com automation:</strong> Google Form (new response) → OpenAI (generate personalized reply) → Gmail (send reply to their email). Your OpenAI prompt should be: <em>"You are a helpful assistant for [brand]. A potential customer named [name] sent this message: [their question]. Write a warm, helpful, personalized 3-paragraph email reply. Paragraph 1: acknowledge their question personally. Paragraph 2: answer it helpfully. Paragraph 3: invite them to the next step with a friendly CTA."</em>`},{v:"v-a",t:`<strong>Test with 5 very different inquiries.</strong> Submit these through the form yourself: (1) Asking about prices (2) Asking about a specific product (3) A complaint about something (4) A general "how does this work" question (5) A completely off-topic question. For each, rate the AI reply 1–5. Fix any major failures by improving the prompt.`},{v:"v-b",t:`<strong>Write the product description</strong> for this system in Notion — written as if pitching to a business owner: What problem it solves, how fast it responds, what the setup includes, and your price (research Fiverr for market rates). Practice saying this pitch out loud.`}],tools:[{n:"Make.com",u:"https://make.com",free:true},{n:"Google Forms",u:"https://forms.google.com",free:true},{n:"OpenAI API",u:"https://platform.openai.com",free:true},{n:"Gmail",u:"https://gmail.com",free:true}],resources:[],deliverable:{title:"Live AI Lead Response System",body:`A working form + automation + 5 test results with ratings + a client-pitch product description. This is <strong>Portfolio Piece #13</strong>. Businesses pay $100–$300 setup + $50/month retainer for exactly this.`},tip:"Show this in your portfolio with the test results. 'I built a system that responds to customer inquiries in under 30 seconds, 24/7' is a statement that gets you hired.",milestone:null},
+  {n:21,title:"Project 3 — AI Business Chatbot",sub:"A fully tested, live chatbot for a real business type",tags:[["Automation","ta"],["Tools","tt"]],explainer:`You built a basic chatbot in Day 14. Today you build a <strong>fully professional, client-ready version</strong> — with thorough testing, a real case study, and everything packaged to show an employer or sell to a client. The difference between Day 14 and today is professionalism and completeness.`,tasks:[{v:"v-p",t:`<strong>Choose a new business type</strong> (different from Day 14): (A) Private medical clinic (B) Language learning center (C) Real estate agency (D) Car service center. Write a detailed FAQ document in Google Docs — 25 Q&A pairs covering every common question this type of business receives. Be thorough. Download as PDF.`},{v:"v-t",t:`<strong>Build and configure the Chatbase chatbot</strong> with this new knowledge base. Write a detailed system prompt defining: personality, what it can help with, how it handles questions it doesn't know, and how it escalates to a human. Make it feel like a real staff member, not a robotic FAQ machine.`},{v:"v-a",t:`<strong>Rigorous testing — 20 questions.</strong> Test 10 normal questions, 5 edge cases (unusual phrasing, typos, multiple questions at once), and 5 "break" attempts (questions way off-topic, rude questions, attempts to get it to say something wrong). Document every test: question, response, rating (1–5), and action taken to fix failures.`},{v:"v-b",t:`<strong>Write a proper case study</strong> in Notion: (1) The Business (who is the client) (2) The Problem (what they struggled with) (3) The Solution (your chatbot — specs, approach) (4) The Results (your test scores, response quality) (5) The Embed (how a business would add this to their website). Screenshot the chatbot interface.`}],tools:[{n:"Chatbase",u:"https://chatbase.co",free:true},{n:"Claude",u:"https://claude.ai",free:true},{n:"Notion",u:"https://notion.so",free:true}],resources:[{icon:"🤖",title:"Chatbase — Build Your Chatbot",desc:"Upload your FAQ PDF and have a working chatbot in 5 minutes.",url:"https://chatbase.co"}],deliverable:{title:"Professional Chatbot + Case Study",body:`A live chatbot link + a complete Notion case study page with 20 test results. This is <strong>Portfolio Piece #14</strong>. Package the case study as a PDF — it becomes a sales document for your first client pitch.`},tip:"When showing this to clients, lead with the problem it solves: 'This chatbot handles 80% of customer questions automatically so your staff can focus on higher-value work.' Then show the test results.",milestone:null},
+  {n:22,title:"Project 4 — Professional Research Report",sub:"The kind of report consultants charge thousands of dollars for",tags:[["Prompt Eng","tp"],["Content","tc"]],explainer:`Research reports are one of the highest-value outputs in the business world. Companies, NGOs, investors, and government bodies constantly need clear, concise, professionally-written analysis of markets, trends, and industries. <strong>With AI, you can now produce what would take a team of researchers weeks — in a single focused day.</strong> The key is doing it with enough quality, rigor, and your own editorial voice that it reads like expert work.`,tasks:[{v:"v-p",t:`<strong>Choose your topic</strong> (pick one with Egyptian relevance — this makes you stand out): (A) "The Impact of AI Tools on Marketing Agencies in Egypt — 2025 Analysis" (B) "E-commerce Growth in Egypt: AI's Role in the Next Phase" (C) "AI Adoption by Egyptian SMEs: Challenges and Opportunities" (D) A topic of your own. Use Perplexity.ai to research it for 30 minutes. Save 5 real data points or statistics with their sources.`},{v:"v-t",t:`<strong>Structure and write the report with Claude</strong> using this multi-step process: Step 1 — send all 5 data points to Claude and ask for an executive summary. Step 2 — ask for 3 detailed key findings based on those data points. Step 3 — ask for 3 actionable recommendations. Step 4 — ask for a professional conclusion. For each section, edit the output to add your own voice and any Egyptian-specific context you know.`},{v:"v-a",t:`<strong>Design a professional PDF in Canva:</strong> Choose a clean, professional Canva template. Add: cover page (title, date, your name/brand), executive summary, key findings (with data visualizations if possible), recommendations, conclusion, sources list. This document should look like it came from a consulting firm. Export as PDF.`},{v:"v-b",t:`<strong>Quality check before publishing:</strong> Read the entire report out loud. Check: Does every finding have a source? Does every recommendation logically follow from the findings? Does it read clearly without jargon? Would you be comfortable showing this to a senior executive? Fix anything that doesn't pass.`}],tools:[{n:"Perplexity AI",u:"https://perplexity.ai",free:true},{n:"Claude",u:"https://claude.ai",free:true},{n:"Canva",u:"https://canva.com",free:true}],resources:[{icon:"🔍",title:"Perplexity AI — Best Research Tool",desc:"Find sourced, accurate information fast. Use for all your data points.",url:"https://perplexity.ai"}],deliverable:{title:"Professional Research Report PDF",body:`A 4–6 page professionally designed PDF report. This is <strong>Portfolio Piece #15</strong> — the most impressive single piece in your portfolio. Research reports for Egyptian industries sell for $500–$2,000 to businesses and organizations who need market intelligence.`},tip:"Choose an Egyptian topic every time you can. You have local knowledge that no AI and no foreign consultant has. That local expertise combined with AI analysis tools is your unique competitive edge.",milestone:null},
+  {n:23,title:"Project 5 — LinkedIn Profile Build",sub:"Your professional identity in the AI world",tags:[["Portfolio","tx"]],explainer:`LinkedIn is where <strong>80% of professional jobs in Egypt and the Arab world are found</strong> — especially in tech. Your LinkedIn profile is not a resume. It's a living, searchable, professional brand. A weak profile means recruiters scroll past you. A strong profile means they message you. Today you build a strong one — using AI to write every part, and your own judgment to make it feel authentic.`,tasks:[{v:"v-p",t:`<strong>Your LinkedIn headline</strong> is the most important line on your profile — it appears in every search result. Use this formula: <em>[Your Role Title] | [Specialization] | [What you deliver for people]</em>. Examples: "AI Tools Specialist | Helping Egyptian Businesses Automate with AI | Prompt Engineer & No-Code Builder" OR "AI Content Creator | Social Media Growth Using Generative AI | Video + Graphics + Copy." Ask Claude to write 5 headline options for you based on your skills. Pick and refine the best one.`},{v:"v-t",t:`<strong>Your About section</strong> should tell a story in 3 paragraphs: (1) Who you are and what sparked your interest in AI (2) What you've built in the last 23 days — specific, concrete things (3) What you're looking for and what you can help companies achieve. Ask Claude to draft this, then rewrite 50% in your own words. It must sound like you, not like a cover letter.`},{v:"v-a",t:`<strong>Add your experience and skills.</strong> Add a position: "AI Practitioner — Self-Employed" with start date this month. Description: list your 5 best portfolio projects with one sentence each. Add skills: Prompt Engineering, AI Content Creation, No-Code Automation, Canva, ChatGPT, Claude, Make.com, Chatbase. Skills with endorsements rank higher in search.`},{v:"v-b",t:`<strong>Profile photo and Featured section:</strong> Add a professional-looking photo (use a clean, well-lit photo on a plain background — no sunglasses, no group photos). In the Featured section, add 3 links: your Notion portfolio, your best blog post, and your Gamma.app presentation. These are the first things a recruiter clicks.`}],tools:[{n:"LinkedIn",u:"https://linkedin.com",free:true},{n:"Claude",u:"https://claude.ai",free:true},{n:"Canva",u:"https://canva.com",free:true}],resources:[{icon:"💼",title:"LinkedIn — Create Your Profile",desc:"Your professional home on the internet. Non-negotiable for AI careers.",url:"https://linkedin.com"}],deliverable:{title:"Complete LinkedIn Profile",body:`A fully built, published LinkedIn profile with headline, about section, experience, skills, and 3 featured links. Copy your profile URL and add it to your Notion portfolio. <strong>This is your most important career asset.</strong>`},tip:"After publishing, search your own name on LinkedIn. Does your profile appear? Does the headline make it clear what you do? Would you hire this person? Ask someone older than you for honest feedback.",milestone:null},
+  {n:24,title:"Build Your Service Menu",sub:"Know what you sell before anyone asks",tags:[["Portfolio","tx"]],explainer:`One of the most uncomfortable moments for any new professional is when a potential client asks: <em>"So what exactly do you do, and how much do you charge?"</em> Most people fumble this because they haven't thought it through. Today you fix that completely. You'll define your <strong>exact services, exact deliverables, and price ranges</strong> — so the next time someone asks, you answer with confidence.`,tasks:[{v:"v-p",t:`<strong>Define your 3–4 core services</strong> based on your best work this month. Examples: (1) "AI Content Package — 1 week of social media content for any brand: 21 posts, 3 platforms, AI images + copy. Delivery: 3 days." (2) "Business Chatbot Setup — custom AI chatbot trained on your business knowledge. Delivery: 5 days." (3) "AI Automation System — one custom Make.com automation connecting 2–3 apps with AI built in. Delivery: 7 days." (4) "AI Research Report — a 4-page market or industry analysis. Delivery: 5 days." Customize these based on what you actually built.`},{v:"v-t",t:`<strong>Research market prices on Fiverr:</strong> Go to <a href="https://fiverr.com" target="_blank">fiverr.com</a> and search each of your services. Sort by "Best Selling." Look at what the top sellers charge and what they include. Note: you should start 20–30% below the market to build reviews, then increase. Write your starting price for each service.`},{v:"v-a",t:`<strong>Design your 1-page service sheet in Canva:</strong> It should include: your name + title, a 1-sentence tagline, your 3–4 services with brief descriptions and prices, a "What you get" list for each, your contact email and LinkedIn URL. Keep it clean, professional, and readable in 30 seconds. Export as PDF.`},{v:"v-b",t:`<strong>Create a Fiverr account at <a href="https://fiverr.com" target="_blank">fiverr.com</a></strong> and draft your first gig. Choose your best service. Write the gig title, description (what you deliver, how you work, why choose you), packages (Basic/Standard/Premium), and FAQs. Don't publish yet — Day 27 is when you launch. Save as draft.`}],tools:[{n:"Canva",u:"https://canva.com",free:true},{n:"Fiverr",u:"https://fiverr.com",free:true},{n:"Claude",u:"https://claude.ai",free:true}],resources:[{icon:"💰",title:"Fiverr — AI Services Marketplace",desc:"Research prices and eventually sell your services here.",url:"https://fiverr.com"}],deliverable:{title:"Service Sheet PDF",body:`A 1-page professionally designed PDF service sheet + a saved Fiverr gig draft. Share the service sheet in your Notion portfolio and on LinkedIn as a document post. When people ask what you do, send them this.`},tip:"Don't undervalue yourself — but don't overcharge either. Your first 3 clients are not about the money. They're about getting testimonials and case studies that justify higher prices later.",milestone:null},
+  {n:25,title:"Interview & Presentation Practice",sub:"The ability to explain what you know is as important as knowing it",tags:[["Portfolio","tx"]],explainer:`Many talented people fail to get hired not because of missing skills — but because they <strong>can't clearly explain what they know</strong>. This is especially true for AI roles, where the field is so new that many interviewers don't even know exactly what to look for. If you can speak clearly about AI tools, explain your projects confidently, and answer tough questions without freezing — you will stand out from almost everyone else interviewing for the same role.`,tasks:[{v:"v-p",t:`<strong>Mock interview with Claude:</strong> Open Claude and send: <em>"You are a senior recruiter at an Egyptian AI agency. Conduct a 10-question interview with me for an AI Tools Specialist role. Ask one question at a time. After I answer, give me brief feedback on my answer (1–2 sentences), then ask the next question. Be realistic and professional."</em> Answer every question out loud before typing your response — this is the practice.`},{v:"v-t",t:`<strong>Prepare written answers to these 5 questions</strong> — and practice saying them until smooth: (1) "Tell me about yourself and why AI." (2) "What AI tools do you know and what have you done with them?" (3) "Walk me through your most impressive project." (4) "How would you help a company that has never used AI start using it?" (5) "What's your biggest weakness in this field?" Write the answers in Notion. Keep each under 90 seconds when spoken.`},{v:"v-a",t:`<strong>Record a 2-minute video introduction</strong> on your phone or laptop camera. Introduce yourself, mention 3 of your best projects, and say what you're looking for. Watch it back. You will cringe — that's normal. Identify 1 specific thing to improve (pacing? eye contact? filler words?) and record a second version fixing that one thing.`},{v:"v-b",t:`<strong>Prepare your portfolio walkthrough:</strong> Practice going through your Notion portfolio out loud, like you're showing it to someone. For each project: say the problem it solved, how you built it, and what a business could do with it. Time yourself — the whole walkthrough should be under 5 minutes. Smooth and confident, not memorized.`}],tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"Notion",u:"https://notion.so",free:true}],resources:[],deliverable:{title:"Interview Prep Pack",body:`A Notion page with your written answers to 5 interview questions + your personal notes from the Claude mock interview session. Keep this page and review it the night before any real interview or meeting.`},tip:"The best answer to any interview question starts with a specific example: 'For example, I built a chatbot for a fictional restaurant that answered 80% of customer questions correctly.' Specific beats vague every single time.",milestone:null},
+  {n:26,title:"Final Portfolio Polish",sub:"Make it employer-ready — no excuses",tags:[["Portfolio","tx"]],explainer:`This is the last day of Phase 3 and the most important day for your portfolio. First impressions are everything. A portfolio that looks unfinished, has typos, or is confusing tells a recruiter you don't care about details — which is the worst impression in the AI industry. Today you make every single piece employer-ready.`,tasks:[{v:"v-p",t:`<strong>The audit:</strong> Open your Notion portfolio and read every single project entry as if you are an employer who has never heard of you. For each project ask: Is the title clear? Does it immediately explain what this is? Is the problem statement specific? Is the result measurable? Are there typos? Does it look professional? Fix every issue you find.`},{v:"v-t",t:`<strong>The 5-element check for every project:</strong> Make sure every project has all 5 of these: (1) Clear title (2) Problem statement — "The problem I solved was..." (3) Solution — "I built X using Y" (4) Tools used — listed clearly (5) Result — "The output was a [specific thing] that a client could [use for something specific]." Any project missing even one element needs to be updated now.`},{v:"v-a",t:`<strong>Build the perfect homepage:</strong> Your Notion portfolio home page should have, in this order: your professional photo, your name and title, a 2-sentence bio, your contact email and LinkedIn link, then 4 clean sections for your work. Test it on your phone — does it look good on mobile? Most recruiters will check it on their phone.`},{v:"v-b",t:`<strong>The 60-second test:</strong> Share your portfolio link with one person and ask them to spend 60 seconds on it, then tell you: What do I do? What's my best project? Would they consider hiring me? If they can't answer the first two questions immediately, your portfolio needs more work. Fix what they point out.`}],tools:[{n:"Notion",u:"https://notion.so",free:true},{n:"LinkedIn",u:"https://linkedin.com",free:true}],resources:[],deliverable:{title:"Employer-Ready Portfolio",body:`Your fully polished Notion portfolio with a clean home page, 4 organized sections, and every project meeting the 5-element check. Copy and save the final URL. Send it to yourself on WhatsApp so it's always one tap away.`},tip:"A portfolio that clearly tells your story beats a perfect portfolio that's confusing. Clarity is the goal. Less is more. When in doubt, cut — don't add.",milestone:"🎯 Phase 3 Complete! You've built 5+ real projects, polished a professional portfolio, and prepared for interviews. You have more real, demonstrated AI skills than most people who've studied it for a year. Phase 4 is where you turn all of this into opportunity."}
+  ]
+},
+{
+  id:4,icon:"🚀",ph:"ph4",name:"Phase 4 — Launch & Get Hired",range:"Days 27–30",
+  desc:"Everything you've built in 26 days has been preparation for these final 4 days. This is where you go from 'learning' to 'earning.' Apply smart, network real, and prepare for the recruiter meeting that connects you with your first AI-as-a-Service employer.",
+  days:[
+  {n:27,title:"Launch Day — Apply to 10 Positions",sub:"Quality applications, not mass-applying",tags:[["Portfolio","tx"]],explainer:`Most people apply to jobs the wrong way — they send the same generic CV to 100 companies and wonder why no one calls back. <strong>The right way is completely different: targeted, personalized, and led by your portfolio.</strong> Today you apply to exactly 10 positions with a custom message for each one. 10 quality applications will outperform 100 generic ones every single time.`,tasks:[{v:"v-p",t:`<strong>Find your 10 target positions on LinkedIn:</strong> Search these roles with "Egypt" OR "Remote" as location filter: "AI Content Specialist" | "Prompt Engineer" | "AI Tools Specialist" | "Automation Specialist" | "No-Code Developer" | "AI Social Media Manager." Filter by "Easy Apply" and "Entry Level." Save 15 that look interesting. Pick your best 10.`},{v:"v-t",t:`<strong>Write a custom cover message for each (use Claude to draft, you to edit).</strong> Cover letter formula for each: Sentence 1 — name the specific thing about their company that interests you. Sentence 2 — describe the most relevant project you built. Sentence 3 — your portfolio link. Sentence 4 — clear ask. Example: <em>"I noticed [Company] is building AI content solutions for Egyptian brands — I recently built a complete 21-post AI content system for a fitness brand that a client could deploy immediately. My portfolio: [link]. I'd love 15 minutes to discuss how I can help your team."</em>`},{v:"v-a",t:`<strong>Also apply on freelance platforms:</strong> Go to <a href="https://upwork.com" target="_blank">Upwork</a> and <a href="https://fiverr.com" target="_blank">Fiverr</a>. On Upwork: submit proposals on 5 projects matching your skills. On Fiverr: publish your gig from Day 24. Keep your Fiverr gig description specific and portfolio link visible.`},{v:"v-b",t:`<strong>Build your application tracker in Notion:</strong> A table with columns: Company | Role | Platform | Date Applied | Status | Follow-Up Date | Notes. Fill in all 10 applications. Set a reminder to follow up on each one in 5–7 days if no response. Following up professionally (once, politely) increases response rates by 40%.`}],tools:[{n:"LinkedIn Jobs",u:"https://linkedin.com/jobs",free:true},{n:"Upwork",u:"https://upwork.com",free:true},{n:"Fiverr",u:"https://fiverr.com",free:true},{n:"Claude",u:"https://claude.ai",free:true}],resources:[{icon:"💼",title:"Upwork — Find Freelance AI Projects",desc:"Search: 'prompt engineering', 'AI content', 'chatbot', 'automation'.",url:"https://upwork.com"},{icon:"💰",title:"Fiverr — Sell Your AI Services",desc:"Set up your gig. Even 1 review changes everything.",url:"https://fiverr.com"}],deliverable:{title:"10 Applications Sent",body:`An application tracker table in Notion with all 10 applications + a published Fiverr gig. Screenshot the submitted applications as proof. The first response you get — even a rejection — is progress.`},tip:"If you get no responses in 7 days, don't be discouraged — follow up once with: 'I applied last week and wanted to share one more relevant project I completed: [link]. Happy to chat whenever works for you.'",milestone:null},
+  {n:28,title:"Build Your Network — Strategically",sub:"The people you know will matter more than anything else",tags:[["Portfolio","tx"]],explainer:`In Egypt and across the Arab world, <strong>personal connections and referrals are the #1 way people get hired</strong> — especially in fast-moving fields like AI where recruiters don't always know exactly what skills to look for. Building a network doesn't mean spamming people or being fake — it means making genuine connections with people who are doing what you want to do.`,tasks:[{v:"v-p",t:`<strong>Connect with 20 AI professionals on LinkedIn.</strong> Search: "AI specialist Egypt", "prompt engineer Cairo", "AI content creator MENA", "automation specialist". Look at each profile before connecting. Personalize every request with one specific sentence: <em>"Hi [Name] — I noticed you work in AI automation and I just completed a 30-day AI learning program building Make.com + OpenAI systems. Would love to connect."</em>`},{v:"v-t",t:`<strong>Send 5 warm outreach messages to people at AI companies.</strong> Message template: <em>"Hi [Name], I hope this finds you well. I recently completed a 30-day intensive AI program where I built [specific project]. I'm genuinely interested in how you got into your role at [company] — would you be open to a 10-minute virtual coffee sometime this week? I'd love to learn from your experience."</em> People say yes to this more than you think.`},{v:"v-a",t:`<strong>Engage with content — don't just consume it.</strong> Follow 10 AI influencers on LinkedIn (search: "AI tools", "prompt engineering", "AI Egypt"). For the next 3 days, leave one substantive comment per day on their posts — not "great post!" but a real observation, question, or addition. This gets you noticed by their followers.`},{v:"v-b",t:`<strong>Join 2 AI communities:</strong> Search Discord for "AI builders" or "AI automation community." Search LinkedIn for "AI Professionals Egypt" group. Join and introduce yourself: your name, what you built this month, and what you're looking for. A single connection from the right community can change your trajectory.`}],tools:[{n:"LinkedIn",u:"https://linkedin.com",free:true}],resources:[{icon:"💼",title:"LinkedIn — Search AI Professionals",desc:"Search 'AI specialist Egypt' and start connecting today.",url:"https://linkedin.com/search/results/people/?keywords=AI+specialist+Egypt"}],deliverable:{title:"20 Connections + 5 Messages",body:`20 new LinkedIn connections + 5 warm outreach messages sent. Document in Notion. Take screenshots. Networking compounds over time — the people you message today might introduce you to your employer 3 months from now.`},tip:"Never ask for a job in the first message. Ask for a conversation, a recommendation, or advice. Once there's a relationship, opportunity follows naturally.",milestone:null},
+  {n:29,title:"Prepare for the Recruiter Meeting",sub:"Everything you built for 30 days points to this conversation",tags:[["Portfolio","tx"]],explainer:`At the end of this 30-day program, the person who gave you this curriculum will connect you with an <strong>AI-as-a-Service company</strong>. That meeting is your real opportunity. It is not a casual chat — it is an opportunity to demonstrate that you are hireable, serious, and ready to contribute from Day 1. Today you prepare for that meeting so thoroughly that you walk in (or log in) with complete confidence.`,tasks:[{v:"v-p",t:`<strong>Write your 1-page professional summary.</strong> This is not a CV — it's a story document. Structure: Who I am (2 sentences) → What I built in 30 days (3 specific projects with one sentence each) → What I can do for your company (3 specific value statements) → What I'm looking for (clear and honest) → My portfolio link. Ask Claude to help draft it, then rewrite it completely in your own voice. It should sound like you when you're at your most confident.`},{v:"v-t",t:`<strong>Prepare your 5-minute portfolio pitch</strong> — practiced until smooth. Walk through your 3 best projects in exactly this structure for each: (1) "The problem was..." (2) "I built..." (3) "The result is..." (4) "A company like yours could use this to..." Time it. It should be exactly 5 minutes. Record yourself. Watch it back.`},{v:"v-a",t:`<strong>Research AI-as-a-Service companies deeply.</strong> Understand their business model: they sell AI solutions (chatbots, automation, content systems) to other businesses. They need people who can: build these systems, manage clients, write prompts, create content, and operate AI tools. Which of these can you do? Which do you want to specialize in? Have a clear answer.`},{v:"v-b",t:`<strong>Your unique value in this meeting:</strong> You are Egyptian, Arabic + English speaking, with AI skills. This combination is genuinely rare and valuable for companies operating in the MENA region. Write 3 specific sentences about why this combination makes you valuable to a regional AIaaS company. Practice saying these out loud. This is your strongest card — play it with confidence.`},{v:"v-r",t:`<strong>Prepare 5 smart questions to ask the recruiter:</strong> (1) "What does a typical project look like at your company from start to finish?" (2) "What AI tools does your team use most?" (3) "What does the first 3 months look like for someone in this role?" (4) "What's the biggest challenge your team faces with clients right now?" (5) "What does growth look like for people who join at this stage?" Smart questions show you're serious about the role, not just desperate for any job.`}],tools:[{n:"Claude",u:"https://claude.ai",free:true},{n:"Notion",u:"https://notion.so",free:true},{n:"Canva",u:"https://canva.com",free:true}],resources:[],deliverable:{title:"Recruiter Meeting Pack",body:`(1) Your 1-page professional summary (PDF) (2) Your 5-minute portfolio pitch (practiced, timed) (3) Your 5 recruiter questions (written and memorized). Have all 3 ready 24 hours before the meeting.`},tip:"The recruiter is on your side — they want to fill the position as much as you want to fill it. Go in as a partner, not a supplicant. You have 30 days of real work to show. That is more than most candidates have.",milestone:null},
+  {n:30,title:"Final Day — Review, Celebrate & Stay Sharp",sub:"Day 30 is not the finish line. It's the starting line.",tags:[["Portfolio","tx"]],explainer:`You made it to Day 30. But here's the truth: <strong>the real work starts now</strong>. The 30 days gave you a foundation that almost no one your age has. But the AI field moves faster than any other industry on earth. What you learn today might be outdated in 6 months — not because your skills are worthless, but because new tools will emerge. The people who win in this industry are the ones who never stop experimenting.`,tasks:[{v:"v-p",t:`<strong>Final portfolio review — the hardest one.</strong> Open your Notion portfolio. Read every single page as if you are the most critical employer you can imagine. For every section, ask: Would I pay someone for this? Is this specific enough? Does it show real skill or just that I used AI? Fix anything that doesn't pass this test. Add anything missing.`},{v:"v-t",t:`<strong>Write yourself a letter.</strong> In Notion, write a private page titled: "To myself — Day 30." Answer honestly: What are you most proud of building? What was harder than expected? What skill surprised you with how quickly you picked it up? What would you do differently? What are you most excited about doing in the next 30 days? Seal it and don't delete it. Read it again in 3 months.`},{v:"v-a",t:`<strong>Publish your LinkedIn "30 days" post.</strong> Write a post (use Claude for a first draft, rewrite it completely in your voice): "30 days ago I knew almost nothing about AI. Here's what I built: [list 3–4 specific things]. Here's what I learned: [1–2 honest insights]. Here's what's next: [your goal]. My portfolio: [link]." This post is public. It will be seen by the right people if you tag it correctly (add hashtags: #AItools #artificialintelligence #Egypt #careerinAI).`},{v:"v-b",t:`<strong>Build your Month 2 plan</strong> in Notion. Pick 3 things to deepen or add: (1) A skill to go deeper on (e.g., more advanced Make.com, video editing, a specific industry niche) (2) A new tool to master (e.g., Midjourney, n8n, Dify.ai) (3) A real client to target — one actual business near you or online that could use one of your services. Set specific dates for each.`},{v:"v-r",t:`<strong>The most important commitment of all:</strong> Use at least one AI tool, build one thing, or learn one new capability every single day. Even 20 minutes. The people who stay sharp in this field are not smarter — they're just more consistent. Consistency beats talent when talent doesn't show up.`}],tools:[{n:"Notion",u:"https://notion.so",free:true},{n:"LinkedIn",u:"https://linkedin.com",free:true}],resources:[{icon:"📖",title:"Future Tools — AI Tools Newsletter",desc:"Stay updated on new AI tools. Subscribe for free.",url:"https://futuretools.io"},{icon:"📖",title:"There's An AI For That — Tool Directory",desc:"Find AI tools for any specific task you need.",url:"https://theresanaiforthat.com"}],deliverable:{title:"LinkedIn Post + Month 2 Plan",body:`A published LinkedIn post about your 30-day journey + a Month 2 plan in Notion with 3 specific goals and dates. Screenshot the LinkedIn post once it's live. You earned this moment.`},tip:"The AI field will be completely different in 2 years. The skills that will still matter: learning fast, prompting well, communicating clearly, and showing up consistently. You've proven you can do all four.",milestone:"🚀 YOU DID IT. 30 days. 4 phases. 15+ portfolio pieces. A LinkedIn profile. A service menu. A network you started building. Real skills that employers want. You are now AI-employable. The recruiter meeting is next — and you are ready for it."}
+  ]
+}
+];
+
+// ─────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────
+let curPhase = 1;
+let done = [];
+try { done = JSON.parse(localStorage.getItem('ai30v2_done') || '[]'); } catch(e) {}
+
+function save() { try { localStorage.setItem('ai30v2_done', JSON.stringify(done)); } catch(e) {} }
+
+// ─────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────
+function updateUI() {
+  const total = done.length;
+  const pct = Math.round((total / 30) * 100);
+  document.getElementById('xp-fill').style.width = pct + '%';
+  document.getElementById('xp-val').textContent = total + ' / 30 days';
+  document.getElementById('s-done').textContent = total;
+  document.getElementById('s-left').textContent = 30 - total;
+
+  document.querySelectorAll('.xp-star').forEach(s => {
+    const at = parseInt(s.dataset.at);
+    s.classList.toggle('earned', total >= at);
+  });
+
+  // phase tab badges
+  PHASES.forEach(ph => {
+    const phDays = ph.days.map(d => d.n);
+    const allDone = phDays.every(n => done.includes(n));
+    const tab = document.querySelector(`.ptab[data-p="${ph.id}"]`);
+    if (tab) tab.classList.toggle('phase-complete', allDone);
+  });
+}
+
+function renderPhase(id) {
+  const ph = PHASES.find(p => p.id === id);
+  if (!ph) return;
+
+  const nextDay = getNextDay();
+
+  let html = `<div class="phase-hdr ${ph.ph}">
+    <div class="phase-hdr-icon">${ph.icon}</div>
+    <div class="phase-hdr-body"><h2>${ph.name}</h2><p>${ph.desc}</p></div>
+    <span class="phase-pill">${ph.range}</span>
+  </div><div class="days">`;
+
+  ph.days.forEach((d, i) => {
+    const isDone = done.includes(d.n);
+    const isNext = d.n === nextDay;
+    const isLocked = !isDone && !isNext && d.n > nextDay;
+    const delay = i * 0.04;
+    let cls = 'day-card';
+    if (isDone) cls += ' done';
+    if (isNext && !isDone) cls += ' active-day';
+    if (isLocked) cls += ' locked';
+
+    const badgeContent = isDone ? '✓' : `D${d.n}`;
+
+    html += `<div class="${cls}" id="dc${d.n}" style="animation-delay:${delay}s">
+      <div class="day-row" onclick="toggleDay(${d.n})">
+        <div class="day-badge">${badgeContent}</div>
+        <div class="day-info">
+          <div class="day-title">${d.title}</div>
+          <div class="day-sub">${d.sub}</div>
+        </div>
+        <div class="day-meta">
+          ${d.tags.map(t=>`<span class="tag ${t[1]}">${t[0]}</span>`).join('')}
+          ${isNext && !isDone ? '<span class="tag" style="background:rgba(167,139,250,0.2);color:var(--p);border:1px solid var(--pb)">▶ TODAY</span>' : ''}
+        </div>
+        <div class="done-check" onclick="event.stopPropagation();markDone(${d.n})" title="Mark complete">✓</div>
+        <div class="chevron" id="ch${d.n}">▾</div>
+      </div>
+      <div class="day-body" id="db${d.n}">
+        <div class="day-body-inner">
+          ${buildDayBody(d)}
+        </div>
+      </div>
+    </div>`;
+  });
+
+  html += '</div>';
+  document.getElementById('phase-content').innerHTML = html;
+}
+
+function buildDayBody(d) {
+  let h = '';
+
+  // Explainer
+  if (d.explainer) {
+    h += `<div class="sec-label">What this day is about</div>
+    <div class="explainer">${d.explainer}</div>`;
+  }
+
+  // Prompt example
+  if (d.promptExample) {
+    h += `<div class="prompt-box"><pre style="white-space:pre-wrap;font-family:var(--mono);font-size:12px">${d.promptExample}</pre></div>`;
+  }
+
+  // Tasks
+  h += `<div class="sec-label">Your tasks for today</div><ul class="task-list">`;
+  d.tasks.forEach((t, i) => {
+    h += `<li class="task-item ${t.v}"><div class="task-num">${i+1}</div><div>${t.t}</div></li>`;
+  });
+  h += '</ul>';
+
+  // Tools
+  if (d.tools && d.tools.length) {
+    h += `<div class="sec-label">Tools you'll use today</div><div class="tools-wrap">`;
+    d.tools.forEach(t => {
+      h += `<a href="${t.u}" target="_blank" class="tool-chip ${t.free?'free':''}"><span class="tool-dot"></span>${t.n}${t.free?' (free)':''}</a>`;
+    });
+    h += '</div>';
+  }
+
+  // Resources
+  if (d.resources && d.resources.length) {
+    h += `<div class="sec-label">Resources & links</div><div class="resource-list">`;
+    d.resources.forEach(r => {
+      h += `<a href="${r.url}" target="_blank" class="resource-card">
+        <div class="resource-card-icon">${r.icon}</div>
+        <div class="resource-card-body">
+          <div class="resource-card-title">${r.title}</div>
+          <div class="resource-card-desc">${r.desc}</div>
+        </div>
+        <div class="resource-card-arrow">↗</div>
+      </a>`;
+    });
+    h += '</div>';
+  }
+
+  // Deliverable
+  if (d.deliverable) {
+    h += `<div class="sec-label">Today's deliverable</div>
+    <div class="deliverable">
+      <div class="deliverable-header">${d.deliverable.title}</div>
+      <p>${d.deliverable.body}</p>
+    </div>`;
+  }
+
+  // Tip
+  if (d.tip) {
+    h += `<div class="tip"><span class="tip-icon">💡</span><span>${d.tip}</span></div>`;
+  }
+
+  // Milestone
+  if (d.milestone) {
+    h += `<div class="milestone"><span class="milestone-icon">🎯</span><div class="milestone-body">${d.milestone}</div></div>`;
+  }
+
+  return h;
+}
+
+function getNextDay() {
+  for (let i = 1; i <= 30; i++) {
+    if (!done.includes(i)) return i;
+  }
+  return 31; // all done
+}
+
+// ─────────────────────────────────────────
+// INTERACTIONS
+// ─────────────────────────────────────────
+function toggleDay(n) {
+  const body = document.getElementById('db' + n);
+  const ch = document.getElementById('ch' + n);
+  if (!body) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  ch.classList.toggle('open', !isOpen);
+}
+
+function markDone(n) {
+  const idx = done.indexOf(n);
+  const wasDone = idx !== -1;
+  if (wasDone) {
+    done.splice(idx, 1);
+  } else {
+    done.push(n);
+    showToast(n);
+  }
+  save();
+  updateUI();
+
+  const card = document.getElementById('dc' + n);
+  if (card) {
+    card.classList.toggle('done', !wasDone);
+    if (!wasDone) {
+      const badge = card.querySelector('.day-badge');
+      if (badge) badge.textContent = '✓';
+    } else {
+      const badge = card.querySelector('.day-badge');
+      if (badge) badge.textContent = `D${n}`;
+    }
+  }
+
+  // Re-render to update "TODAY" badge
+  setTimeout(() => { renderPhase(curPhase); updateUI(); }, 400);
+}
+
+const toastMsgs = [
+  "Day complete! Keep going 🔥","One more day crushed! 💪","You're building something real 🚀","Consistency is your superpower ⚡","Look at you go! 🎯","Another day, another skill unlocked 🧠","You're in the top 1% already 🏆","This is how careers are built 💼"
+];
+let toastT;
+function showToast(n) {
+  const t = document.getElementById('toast');
+  const msg = document.getElementById('toast-msg');
+  const msgs = toastMsgs;
+  msg.textContent = `Day ${n} complete! ${msgs[Math.floor(Math.random()*msgs.length)]}`;
+  t.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ─────────────────────────────────────────
+// PHASE TABS
+// ─────────────────────────────────────────
+document.querySelectorAll('.ptab').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    curPhase = parseInt(this.getAttribute('data-p'));
+    renderPhase(curPhase);
+    updateUI();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ─────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────
+renderPhase(1);
+updateUI();
+</script>
+</body>
+</html>
